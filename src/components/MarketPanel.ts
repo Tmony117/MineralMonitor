@@ -483,7 +483,7 @@ export class CommoditiesPanel extends Panel {
       if (
         tab === 'commodities' ||
         tab === 'fx' ||
-        (tab === 'xau' && SITE_VARIANT === 'commodity')
+        (tab === 'xau' && (SITE_VARIANT === 'commodity' || SITE_VARIANT === 'minerals'))
       ) {
         this._tab = tab as CommoditiesTab;
         this._render();
@@ -544,7 +544,7 @@ export class CommoditiesPanel extends Panel {
 
   private _render(): void {
     const hasFx = this._fxRates.length > 0;
-    const hasXau = SITE_VARIANT === 'commodity' && this._commodityData.some(d => d.symbol === 'GC=F' && d.price !== null);
+    const hasXau = (SITE_VARIANT === 'commodity' || SITE_VARIANT === 'minerals') && this._commodityData.some(d => d.symbol === 'GC=F' && d.price !== null);
     if (this._tab === 'xau' && !hasXau) this._tab = 'commodities';
     const tabBar = this._buildTabBar(hasFx, hasXau);
 

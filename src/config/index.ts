@@ -141,3 +141,15 @@ export {
 // COMMODITY_MINERS: 30+ mining company HQs — not yet rendered on map.
 // Uncomment when a miners layer is added to DeckGLMap.ts.
 // export { COMMODITY_MINERS, type CommodityMiner } from './commodity-miners';
+
+// Minerals variant - Ghana-first ECOWAS minerals (reuses commodity-geo data)
+export {
+  COMMODITY_PRICES as MINERALS_PRICES,
+  COMMODITY_MARKET_SYMBOLS as MINERALS_MARKET_SYMBOLS,
+} from './commodity-markets';
+
+export {
+  MINING_SITES as MINERALS_SITES,
+  PROCESSING_PLANTS as MINERALS_PROCESSING_PLANTS,
+  COMMODITY_PORTS as MINERALS_PORTS,
+} from './commodity-geo';

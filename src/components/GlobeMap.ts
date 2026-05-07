@@ -2575,7 +2575,8 @@ export class GlobeMap {
     eu:       { lat: 50,  lng:  10,  altitude: 1.2 },
     asia:     { lat: 35,  lng: 105,  altitude: 1.5 },
     latam:    { lat: -15, lng: -60,  altitude: 1.5 },
-    africa:   { lat:  5,  lng:  20,  altitude: 1.5 },
+    africa:   { lat: 5,   lng:  20,  altitude: 1.8 },
+    westafrica:{ lat: 8,  lng:  -2,   altitude: 2.0 },
     oceania:  { lat: -25, lng: 140,  altitude: 1.5 },
   };
 

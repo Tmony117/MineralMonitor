@@ -130,6 +130,7 @@ import { getAiFlowSettings } from '@/services/ai-flow-settings';
 import { t, getCurrentLanguage } from '@/services/i18n';
 import { getHydratedData } from '@/services/bootstrap';
 import { ingestHeadlines } from '@/services/trending-keywords';
+import { getMockMineralsNews, getMockMineralsMarkets } from '@/services/mock-minerals-data';
 import type { ListFeedDigestResponse } from '@/generated/client/worldmonitor/news/v1/service_client';
 import type { GetSectorSummaryResponse, ListMarketQuotesResponse, ListCommodityQuotesResponse } from '@/generated/client/worldmonitor/market/v1/service_client';
 import type { SectorValuation } from '@/components/MarketPanel';
@@ -476,8 +477,8 @@ export class DataLoaderManager implements AppModule {
         tasks.push({ name: 'oil', task: runGuarded('oil', () => this.loadOilAnalytics()) });
       }
 
-      // Trade policy + supply-chain data (FULL, FINANCE, COMMODITY, ENERGY variants use supply-chain surface)
-      if (SITE_VARIANT === 'full' || SITE_VARIANT === 'finance' || SITE_VARIANT === 'commodity' || SITE_VARIANT === 'energy') {
+      // Trade policy + supply-chain data (FULL, FINANCE, COMMODITY, ENERGY, MINERALS variants use supply-chain surface)
+      if (SITE_VARIANT === 'full' || SITE_VARIANT === 'finance' || SITE_VARIANT === 'commodity' || SITE_VARIANT === 'energy' || SITE_VARIANT === 'minerals') {
         if (shouldLoad('trade-policy')) {
           tasks.push({ name: 'tradePolicy', task: runGuarded('tradePolicy', () => this.loadTradePolicy()) });
         }
@@ -1164,6 +1165,25 @@ export class DataLoaderManager implements AppModule {
       }
     }
 
+    // Inject mock data for minerals-specific categories if live data is empty
+    if (SITE_VARIANT === 'minerals') {
+      const mockCategories = ['ghana-focus', 'ecowas-minerals', 'africa-mining'] as const;
+      for (const cat of mockCategories) {
+        if (!this.ctx.newsByCategory[cat] || this.ctx.newsByCategory[cat].length === 0) {
+          const mock = getMockMineralsNews(cat);
+          if (mock && mock.length > 0) {
+            this.ctx.newsByCategory[cat] = mock;
+            this.renderNewsForCategory(cat, mock);
+            collectedNews.push(...mock);
+            this.ctx.statusPanel?.updateFeed(cat.charAt(0).toUpperCase() + cat.slice(1), {
+              status: 'ok',
+              itemCount: mock.length,
+            });
+          }
+        }
+      }
+    }
+
     this.ctx.allNews = collectedNews;
     this.ctx.initialLoadComplete = true;
     mountCommunityWidget();
@@ -1417,6 +1437,13 @@ export class DataLoaderManager implements AppModule {
         this.ctx.statusPanel?.updateApi('Finnhub', { status: 'ok' });
       }
 
+      // Inject mock market data for minerals variant when live data is empty
+      if (SITE_VARIANT === 'minerals' && stocksResult.data.length === 0) {
+        const mockMarkets = getMockMineralsMarkets();
+        this.ctx.latestMarkets = mockMarkets;
+        marketsPanel?.renderMarkets(mockMarkets);
+      }
+
       // Sector heatmap: always attempt loading regardless of market rate-limit status
       const hydratedSectors = getHydratedData('sectors') as (GetSectorSummaryResponse & { valuations?: Record<string, SectorValuation> }) | undefined;
       const heatmapPanel = this.ctx.panels['heatmap'] as HeatmapPanel | undefined;
@@ -1626,11 +1653,13 @@ export class DataLoaderManager implements AppModule {
         yieldCurveContext,
         sectorContext,
         frameworkAppend: getActiveFrameworkForPanel('daily-market-brief')?.systemPromptAppend,
-        newsCategories: SITE_VARIANT === 'commodity'
-          ? ['commodity-news', 'gold-silver', 'mining-news', 'energy', 'critical-minerals']
-          : SITE_VARIANT === 'energy'
-            ? ['live-news', 'energy', 'supply-chain']
-            : undefined,
+        newsCategories: SITE_VARIANT === 'minerals'
+          ? ['commodity-news', 'gold-silver', 'mining-news', 'critical-minerals', 'ghana-focus', 'ecowas-minerals']
+          : SITE_VARIANT === 'commodity'
+            ? ['commodity-news', 'gold-silver', 'mining-news', 'energy', 'critical-minerals']
+            : SITE_VARIANT === 'energy'
+              ? ['live-news', 'energy', 'supply-chain']
+              : undefined,
       });
 
       if (this.dailyBriefGeneration !== gen) return;

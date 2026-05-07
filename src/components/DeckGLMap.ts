@@ -150,7 +150,7 @@ import type { WebcamEntry, WebcamCluster } from '@/generated/client/worldmonitor
 import { fetchWebcamImage } from '@/services/webcams';
 
 export type TimeRange = '1h' | '6h' | '24h' | '48h' | '7d' | 'all';
-export type DeckMapView = 'global' | 'america' | 'mena' | 'eu' | 'asia' | 'latam' | 'africa' | 'oceania';
+export type DeckMapView = 'global' | 'america' | 'mena' | 'eu' | 'asia' | 'latam' | 'africa' | 'westafrica' | 'oceania';
 type MapInteractionMode = 'flat' | '3d';
 
 export interface CountryClickPayload {
@@ -194,6 +194,7 @@ const VIEW_PRESETS: Record<DeckMapView, { longitude: number; latitude: number; z
   asia: { longitude: 105, latitude: 35, zoom: 3 },
   latam: { longitude: -60, latitude: -15, zoom: 3 },
   africa: { longitude: 20, latitude: 5, zoom: 3 },
+  westafrica: { longitude: -2, latitude: 8, zoom: 5 },
   oceania: { longitude: 135, latitude: -25, zoom: 3.5 },
 };
 
