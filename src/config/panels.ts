@@ -1085,6 +1085,157 @@ const ENERGY_MOBILE_MAP_LAYERS: MapLayers = {
 };
 
 // ============================================
+// MINERALS VARIANT (Ghana-first ECOWAS Minerals)
+// ============================================
+const MINERALS_PANELS: Record<string, PanelConfig> = {
+  map: { name: 'West Africa Minerals Map', enabled: true, priority: 1 },
+  'live-news': { name: 'Minerals Headlines', enabled: true, priority: 1 },
+  insights: { name: 'AI Minerals Insights', enabled: true, priority: 1 },
+  'commodity-news': { name: 'Commodity News', enabled: true, priority: 1 },
+  'liquidity-shifts': { name: 'Liquidity Shifts', enabled: true, priority: 1 },
+  'positioning-247': { name: '24/7 Positioning', enabled: true, priority: 1 },
+  'gold-silver': { name: 'Gold & Silver', enabled: true, priority: 1 },
+  'mining-news': { name: 'Mining News', enabled: true, priority: 1 },
+  'critical-minerals': { name: 'Critical Minerals', enabled: true, priority: 1 },
+  'base-metals': { name: 'Base Metals', enabled: true, priority: 1 },
+  'mining-companies': { name: 'Mining Companies', enabled: true, priority: 1 },
+  'ghana-focus': { name: 'Ghana Minerals Focus', enabled: true, priority: 1 },
+  'ecowas-minerals': { name: 'ECOWAS Minerals Tracker', enabled: true, priority: 1 },
+  'africa-mining': { name: 'Africa Mining', enabled: true, priority: 2 },
+  'supply-chain': { name: 'Supply Chain & Logistics', enabled: true, priority: 1 },
+  'commodity-regulation': { name: 'Regulation & Policy', enabled: true, priority: 2 },
+  markets: { name: 'West Africa Mining Stocks', enabled: true, priority: 1 },
+  commodities: { name: 'Live Mineral Prices', enabled: true, priority: 1 },
+  heatmap: { name: 'Sector Heatmap', enabled: true, priority: 1 },
+  'macro-signals': { name: 'Market Regime', enabled: true, priority: 1 },
+  'trade-policy': { name: 'Trade Policy', enabled: true, priority: 1, premium: 'locked' as const },
+  'sanctions-pressure': { name: 'Sanctions Pressure', enabled: true, priority: 1 },
+  economic: { name: 'Macro Stress', enabled: true, priority: 1 },
+  'gulf-economies': { name: 'Gulf & OPEC Economies', enabled: true, priority: 1 },
+  'gcc-investments': { name: 'GCC Resource Investments', enabled: true, priority: 2 },
+  'consumer-prices': { name: 'Consumer Prices', enabled: true, priority: 2 },
+  'airline-intel': { name: 'Airline Intelligence', enabled: true, priority: 2 },
+  polymarket: { name: 'Commodity Predictions', enabled: true, priority: 2 },
+  'world-clock': { name: 'World Clock', enabled: true, priority: 2 },
+  monitors: { name: 'My Monitors', enabled: true, priority: 2 },
+  'latest-brief': { name: 'Latest Brief', enabled: true, priority: 1, premium: 'locked' as const },
+  climate: { name: 'Climate & Weather Impact', enabled: true, priority: 2 },
+  'satellite-fires': { name: 'Fires & Operational Risk', enabled: true, priority: 2 },
+};
+
+const MINERALS_MAP_LAYERS: MapLayers = {
+  gpsJamming: false,
+  satellites: false,
+
+
+  conflicts: false,
+  bases: false,
+  cables: true,
+  pipelines: false,
+  hotspots: false,
+  ais: true,
+  nuclear: false,
+  irradiators: false,
+  sanctions: true,
+  weather: true,
+  economic: true,
+  waterways: true,
+  outages: true,
+  cyberThreats: false,
+  datacenters: false,
+  protests: false,
+  flights: false,
+  military: false,
+  natural: true,
+  spaceports: false,
+  minerals: true,
+  fires: true,
+  ucdpEvents: false,
+  displacement: false,
+  climate: true,
+  startupHubs: false,
+  cloudRegions: false,
+  accelerators: false,
+  techHQs: false,
+  techEvents: false,
+  stockExchanges: false,
+  financialCenters: false,
+  centralBanks: false,
+  commodityHubs: true,
+  gulfInvestments: false,
+  positiveEvents: false,
+  kindness: false,
+  happiness: false,
+  speciesRecovery: false,
+  renewableInstallations: false,
+  tradeRoutes: true,
+  iranAttacks: false,
+  ciiChoropleth: false,
+  resilienceScore: false,
+  dayNight: false,
+  miningSites: true,
+  processingPlants: true,
+  commodityPorts: true,
+  webcams: false,
+  diseaseOutbreaks: false,
+};
+
+const MINERALS_MOBILE_MAP_LAYERS: MapLayers = {
+  gpsJamming: false,
+  satellites: false,
+  conflicts: false,
+  bases: false,
+  cables: false,
+  pipelines: false,
+  hotspots: false,
+  ais: false,
+  nuclear: false,
+  irradiators: false,
+  sanctions: false,
+  weather: false,
+  economic: true,
+  waterways: false,
+  outages: true,
+  cyberThreats: false,
+  datacenters: false,
+  protests: false,
+  flights: false,
+  military: false,
+  natural: true,
+  spaceports: false,
+  minerals: true,
+  fires: false,
+  ucdpEvents: false,
+  displacement: false,
+  climate: false,
+  startupHubs: false,
+  cloudRegions: false,
+  accelerators: false,
+  techHQs: false,
+  techEvents: false,
+  stockExchanges: false,
+  financialCenters: false,
+  centralBanks: false,
+  commodityHubs: true,
+  gulfInvestments: false,
+  positiveEvents: false,
+  kindness: false,
+  happiness: false,
+  speciesRecovery: false,
+  renewableInstallations: false,
+  tradeRoutes: false,
+  iranAttacks: false,
+  ciiChoropleth: false,
+  resilienceScore: false,
+  dayNight: false,
+  miningSites: true,
+  processingPlants: false,
+  commodityPorts: true,
+  webcams: false,
+  diseaseOutbreaks: false,
+};
+
+// ============================================
 // UNIFIED PANEL REGISTRY
 // ============================================
 
@@ -1093,6 +1244,7 @@ export const ALL_PANELS: Record<string, PanelConfig> = {
   ...HAPPY_PANELS,
   ...COMMODITY_PANELS,
   ...ENERGY_PANELS,
+  ...MINERALS_PANELS,
   ...TECH_PANELS,
   ...FINANCE_PANELS,
   ...FULL_PANELS,
@@ -1105,6 +1257,7 @@ export const VARIANT_DEFAULTS: Record<string, string[]> = {
   finance:   Object.keys(FINANCE_PANELS),
   commodity: Object.keys(COMMODITY_PANELS),
   energy:    Object.keys(ENERGY_PANELS),
+  minerals:  Object.keys(MINERALS_PANELS),
   happy:     Object.keys(HAPPY_PANELS),
 };
 
@@ -1132,6 +1285,11 @@ export const VARIANT_PANEL_OVERRIDES: Partial<Record<string, Partial<Record<stri
     map:         { name: 'Energy Atlas Map' },
     'live-news': { name: 'Energy Headlines' },
     insights:    { name: 'AI Energy Insights' },
+  },
+  minerals: {
+    map:         { name: 'West Africa Minerals Map' },
+    'live-news': { name: 'Minerals Headlines' },
+    insights:    { name: 'AI Minerals Insights' },
   },
   happy: {
     map:         { name: 'World Map' },
@@ -1189,6 +1347,8 @@ export const DEFAULT_MAP_LAYERS = SITE_VARIANT === 'happy'
         ? COMMODITY_MAP_LAYERS
         : SITE_VARIANT === 'energy'
           ? ENERGY_MAP_LAYERS
+          : SITE_VARIANT === 'minerals'
+          ? MINERALS_MAP_LAYERS
           : FULL_MAP_LAYERS;
 
 export const MOBILE_DEFAULT_MAP_LAYERS = SITE_VARIANT === 'happy'
@@ -1201,6 +1361,8 @@ export const MOBILE_DEFAULT_MAP_LAYERS = SITE_VARIANT === 'happy'
         ? COMMODITY_MOBILE_MAP_LAYERS
         : SITE_VARIANT === 'energy'
           ? ENERGY_MOBILE_MAP_LAYERS
+          : SITE_VARIANT === 'minerals'
+          ? MINERALS_MOBILE_MAP_LAYERS
           : FULL_MOBILE_MAP_LAYERS;
 
 /** Maps map-layer toggle keys to their data-freshness source IDs (single source of truth). */
@@ -1319,6 +1481,28 @@ export const PANEL_CATEGORY_MAP: Record<string, { labelKey: string; panelKeys: s
     labelKey: 'header.panelCatCommodityEcon',
     panelKeys: ['trade-policy', 'sanctions-pressure', 'economic', 'gulf-economies', 'gcc-investments', 'consumer-prices', 'finance', 'polymarket', 'airline-intel', 'world-clock', 'monitors'],
     variants: ['commodity'],
+  },
+
+  // Minerals variant
+  mineralsPrices: {
+    labelKey: 'header.panelCatCommodityPrices',
+    panelKeys: ['commodities', 'gold-silver', 'base-metals', 'critical-minerals', 'markets', 'heatmap', 'macro-signals'],
+    variants: ['minerals'],
+  },
+  mineralsRegional: {
+    labelKey: 'header.panelCatRegionalNews',
+    panelKeys: ['ghana-focus', 'ecowas-minerals', 'africa-mining'],
+    variants: ['minerals'],
+  },
+  mineralsIndustry: {
+    labelKey: 'header.panelCatMining',
+    panelKeys: ['commodity-news', 'mining-news', 'mining-companies', 'supply-chain', 'commodity-regulation'],
+    variants: ['minerals'],
+  },
+  mineralsEcon: {
+    labelKey: 'header.panelCatCommodityEcon',
+    panelKeys: ['trade-policy', 'sanctions-pressure', 'economic', 'gulf-economies', 'gcc-investments', 'consumer-prices', 'polymarket', 'airline-intel', 'world-clock', 'monitors'],
+    variants: ['minerals'],
   },
 
   // Happy variant

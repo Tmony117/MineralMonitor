@@ -923,6 +923,101 @@ const ENERGY_FEEDS: Record<string, Feed[]> = {
   ],
 };
 
+// Minerals variant feeds — minerals.worldmonitor.app (Ghana-first, ECOWAS minerals)
+// All feeds are tightly scoped to minerals, mining operations, and prices — no
+// general geopolitics, energy-only news, or broad commodity indices.
+const MINERALS_FEEDS: Record<string, Feed[]> = {
+  // Live headlines — Ghana & ECOWAS minerals focus
+  'live-news': [
+    { name: 'Mining.com',             url: rss('https://www.mining.com/feed/') },
+    { name: 'Mining Weekly',          url: rss('https://www.miningweekly.com/rss/') },
+    { name: 'Kitco Mining',           url: rss('https://www.kitco.com/rss/KitcoNews.xml') },
+    { name: 'Ghana Minerals News',    url: rss('https://news.google.com/rss/search?q=(Ghana+mining+OR+Ghana+gold+OR+Ghana+bauxite+OR+Ghana+manganese+OR+Obuasi+OR+Ahafo+OR+Tarkwa+OR+Damang)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'ECOWAS Mining News',     url: rss('https://news.google.com/rss/search?q=(ECOWAS+mining+OR+West+Africa+mining+OR+Cote+d\'Ivoire+gold+OR+Senegal+gold+OR+Liberia+iron+ore+OR+Sierra+Leone+mining+OR+Nigeria+mining)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // General minerals news — mining operations, production, exploration
+  'commodity-news': [
+    { name: 'Mining.com',             url: rss('https://www.mining.com/feed/') },
+    { name: 'Mining Weekly',          url: rss('https://www.miningweekly.com/rss/') },
+    { name: 'S&P Global Metals',      url: rss('https://news.google.com/rss/search?q=site:spglobal.com+(mining+OR+metals+production+OR+ore+grade+OR+mineral+reserves)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mining Technology',      url: rss('https://www.mining-technology.com/feed/') },
+  ],
+  // Gold & silver — prices, LBMA, physical market, central bank buying
+  'gold-silver': [
+    { name: 'Kitco Gold',             url: rss('https://www.kitco.com/rss/KitcoGold.xml') },
+    { name: 'Gold Price News',        url: rss('https://news.google.com/rss/search?q=(gold+price+OR+"gold+market"+OR+bullion+OR+LBMA+OR+"gold+production")+when:1d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Silver Price News',      url: rss('https://news.google.com/rss/search?q=(silver+price+OR+"silver+market"+OR+"silver+futures")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Precious Metals',        url: rss('https://news.google.com/rss/search?q=("precious+metals"+OR+platinum+OR+palladium+OR+"gold+ETF"+OR+GLD+OR+SLV)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'GoldSeek',               url: rss('https://news.goldseek.com/GoldSeek/rss.xml') },
+    { name: 'SilverSeek',             url: rss('https://news.silverseek.com/SilverSeek/rss.xml') },
+  ],
+  // Mining operations — production reports, mine openings, reserves
+  'mining-news': [
+    { name: 'Mining Journal',         url: rss('https://www.mining-journal.com/feed/') },
+    { name: 'Northern Miner',         url: rss('https://www.northernminer.com/feed/') },
+    { name: 'Mining Weekly',          url: rss('https://www.miningweekly.com/rss/') },
+    { name: 'Mine Production',        url: rss('https://news.google.com/rss/search?q=("mine+production"+OR+"mining+output"+OR+"ore+production"+OR+"annual+production"+mine)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Resource Exploration',     url: rss('https://news.google.com/rss/search?q=("mineral+exploration"+OR+"drilling+results"+OR+"resource+estimate"+OR+"ore+reserve")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Critical minerals — lithium, cobalt, rare earths, battery metals
+  'critical-minerals': [
+    { name: 'Benchmark Mineral',      url: rss('https://news.google.com/rss/search?q=("critical+minerals"+OR+"battery+metals"+OR+lithium+OR+cobalt+OR+"rare+earths")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Lithium Market',         url: rss('https://news.google.com/rss/search?q=(lithium+price+OR+"lithium+market"+OR+"lithium+supply"+OR+spodumene+OR+LCE)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Cobalt Market',          url: rss('https://news.google.com/rss/search?q=(cobalt+price+OR+"cobalt+market"+OR+"DRC+cobalt"+OR+"battery+cobalt")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Rare Earths News',       url: rss('https://news.google.com/rss/search?q=("rare+earth"+OR+"rare+earths"+OR+REE+OR+neodymium+OR+praseodymium)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Uranium Market',         url: rss('https://news.google.com/rss/search?q=(uranium+price+OR+"uranium+market"+OR+U3O8+OR+nuclear+fuel)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Base metals — copper, aluminum, zinc, nickel, iron ore (price & supply only)
+  'base-metals': [
+    { name: 'Copper Market',          url: rss('https://news.google.com/rss/search?q=(copper+price+OR+"copper+market"+OR+"copper+supply"+OR+COMEX+copper)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Nickel News',            url: rss('https://news.google.com/rss/search?q=(nickel+price+OR+"nickel+market"+OR+"nickel+supply"+OR+Indonesia+nickel)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Aluminum & Zinc',        url: rss('https://news.google.com/rss/search?q=(aluminum+price+OR+aluminium+OR+zinc+price+OR+"base+metals")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Iron Ore Market',        url: rss('https://news.google.com/rss/search?q=("iron+ore"+price+OR+"iron+ore+market"+OR+"steel+raw+materials")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Manganese Market',       url: rss('https://news.google.com/rss/search?q=(manganese+price+OR+"manganese+market"+OR+"manganese+ore"+OR+Ghana+manganese)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Mining companies — West Africa and global gold majors only
+  'mining-companies': [
+    { name: 'West Africa Miners',     url: rss('https://news.google.com/rss/search?q=(AngloGold+Ashanti+OR+Endeavour+Mining+OR+Perseus+Mining+OR+Resolute+Mining+OR+Newmont+Africa)+(production+OR+results+OR+mine)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Gold Majors',            url: rss('https://news.google.com/rss/search?q=(Newmont+OR+Barrick+OR+AngloGold+OR+Agnico)+(gold+mine+OR+production+OR+results)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Iron Ore Miners',        url: rss('https://news.google.com/rss/search?q=(Rio+Tinto+OR+Vale+OR+BHP+OR+Fortescue)+(iron+ore+OR+production+OR+shipment)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Critical Mineral Co',    url: rss('https://news.google.com/rss/search?q=(Albemarle+OR+SQM+OR+"MP+Materials"+OR+Lynas+OR+Cameco)+(production+OR+results)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Supply chain — mineral logistics, ports, rail, shipping (no geopolitical chokepoints)
+  'supply-chain': [
+    { name: 'Bulk Shipping',          url: rss('https://news.google.com/rss/search?q=("bulk+carrier"+OR+"dry+bulk"+OR+"iron+ore+shipment"+OR+"coal+shipment")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mineral Logistics',      url: rss('https://news.google.com/rss/search?q=("mineral+export"+OR+"ore+export"+OR+"concentrate+shipment"+OR+"mining+logistics")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Port & Terminal',        url: rss('https://news.google.com/rss/search?q=("mineral+port"+OR+"bulk+terminal"+OR+Takoradi+OR+Buchanan+OR+Conakry+port+mining)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Regulation — mining policy, permits, ESG, export bans (minerals only)
+  'commodity-regulation': [
+    { name: 'Mining Regulation',      url: rss('https://news.google.com/rss/search?q=("mining+regulation"+OR+"mining+policy"+OR+"mining+permit"+OR+"mining+ban")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mining ESG',             url: rss('https://news.google.com/rss/search?q=("mining+ESG"+OR+"responsible+mining"+OR+"mine+closure"+OR+tailings)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mineral Export Policy',  url: rss('https://news.google.com/rss/search?q=("mineral+tariff"+OR+"mineral+export+ban"+OR+"ore+export"+OR+"concentrate+export")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Indonesia Nickel Policy', url: rss('https://news.google.com/rss/search?q=(Indonesia+nickel+OR+"nickel+export"+OR+"nickel+ban"+OR+"nickel+processing")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Markets — mining stocks, mineral ETFs, futures (no general finance news)
+  markets: [
+    { name: 'Mining Stock News',      url: rss('https://news.google.com/rss/search?q=(mining+stock+OR+"gold+stock"+OR+"mining+ETF"+OR+GDX+OR+GDXJ)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Kitco Metals',           url: rss('https://www.kitco.com/rss/KitcoNews.xml') },
+    { name: 'Commodity Futures',      url: rss('https://news.google.com/rss/search?q=(COMEX+gold+OR+NYMEX+OR+LME+metals+OR+"commodity+futures")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  // Regional focus panels — dedicated Ghana & ECOWAS feeds
+  'ghana-focus': [
+    { name: 'GhanaWeb Mining',        url: rss('https://news.google.com/rss/search?q=(Ghana+mining+OR+Ghana+minerals+OR+AngloGold+Ashanti+Ghana+OR+Newmont+Ghana+OR+Gold+Fields+Ghana+OR+Ghana+Chamber+of+Mines)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Joy Business Mining',    url: rss('https://news.google.com/rss/search?q=(Joy+Business+mining+OR+Ghana+extractive+OR+Ghana+bauxite+OR+Ghana+manganese+OR+Ghana+iron+ore)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Ghana EPA Mining',       url: rss('https://news.google.com/rss/search?q=(Ghana+EPA+mining+OR+Ghana+environmental+mining+OR+Ghana+mining+permit+OR+Akyem+OR+Chirano+OR+Bibiani)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  'ecowas-minerals': [
+    { name: 'ECOWAS Mining Intel',    url: rss('https://news.google.com/rss/search?q=(ECOWAS+minerals+OR+West+Africa+gold+OR+Mali+mining+OR+Burkina+Faso+gold+OR+Niger+mining+OR+Guinea+bauxite+OR+Senegal+gold+OR+Liberia+iron+ore)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'African Mining Journal',   url: rss('https://news.google.com/rss/search?q=(Africa+mining+investment+OR+African+mining+finance+OR+Perseus+Mining+OR+Endeavour+Mining+OR+Resolute+Mining)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mining Review Africa',   url: rss('https://news.google.com/rss/search?q=(Mining+Review+Africa+OR+Africa+mineral+exports+OR+African+commodity+ports+OR+Takoradi+port+OR+Buchanan+port+mining)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  'africa-mining': [
+    { name: 'Mining Review Africa',   url: rss('https://news.google.com/rss/search?q=(Africa+mining+OR+African+mineral+resources+OR+DRC+cobalt+OR+South+Africa+platinum+OR+Zambia+copper+OR+Zimbabwe+lithium)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'African Mining',         url: rss('https://news.google.com/rss/search?q=(African+Mining+Magazine+OR+Africa+extractives+OR+AMV+OR+African+Mining+Vision)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+};
+
 // Variant-aware exports
 export const FEEDS = SITE_VARIANT === 'tech'
   ? TECH_FEEDS
@@ -934,7 +1029,9 @@ export const FEEDS = SITE_VARIANT === 'tech'
         ? COMMODITY_FEEDS
         : SITE_VARIANT === 'energy'
           ? ENERGY_FEEDS
-          : FULL_FEEDS;
+          : SITE_VARIANT === 'minerals'
+            ? MINERALS_FEEDS
+            : FULL_FEEDS;
 
 export const SOURCE_REGION_MAP: Record<string, { labelKey: string; feedKeys: string[] }> = {
   // Full (geopolitical) variant regions

@@ -519,6 +519,15 @@ export class PanelLayoutManager implements AppModule {
               <span class="variant-label">${t('header.commodity')}</span>
             </a>
             <span class="variant-divider"></span>
+            <a href="${vHref('minerals', 'https://minerals.worldmonitor.app')}"
+               class="variant-option ${SITE_VARIANT === 'minerals' ? 'active' : ''}"
+               data-variant="minerals"
+               ${vTarget('minerals')}
+               title="Minerals${SITE_VARIANT === 'minerals' ? ` ${t('common.currentVariant')}` : ''}">
+              <span class="variant-icon">🪙</span>
+              <span class="variant-label">Minerals</span>
+            </a>
+            <span class="variant-divider"></span>
             <a href="${vHref('energy', 'https://energy.worldmonitor.app')}"
                class="variant-option ${SITE_VARIANT === 'energy' ? 'active' : ''}"
                data-variant="energy"
@@ -909,10 +918,11 @@ export class PanelLayoutManager implements AppModule {
     // initEscalationGetters / getTimeRange right after construction, plus
     // onTimeRangeChanged later — every other ctx.map use is `?.`-guarded).
     const { MapContainer } = await import('@/components/MapContainer');
+    const defaultView = SITE_VARIANT === 'minerals' ? 'westafrica' : 'global';
     this.ctx.map = new MapContainer(mapContainer, {
       zoom: this.ctx.isMobile ? 2.5 : 1.0,
       pan: { x: 0, y: 0 },
-      view: this.ctx.isMobile ? this.ctx.resolvedLocation : 'global',
+      view: this.ctx.isMobile ? this.ctx.resolvedLocation : defaultView,
       layers: this.ctx.mapLayers,
       timeRange: '7d',
     }, preferGlobe);
