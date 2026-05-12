@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c-001",
+        "name": "Tarkwa Gold Mine",
+        "operator": "Gold Fields Ghana",
+        "licenseType": "large-scale",
+        "permitStatus": "active",
+        "primaryMineral": "Gold",
+        "areaSizeHa": 20825,
+        "complianceScore": 92,
+        "royaltyStatus": "current"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-2.000, 5.300],
+            [-1.980, 5.300],
+            [-1.980, 5.320],
+            [-2.000, 5.320],
+            [-2.000, 5.300]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "c-002",
+        "name": "Obuasi Mine",
+        "operator": "AngloGold Ashanti",
+        "licenseType": "large-scale",
+        "permitStatus": "active",
+        "primaryMineral": "Gold",
+        "areaSizeHa": 47500,
+        "complianceScore": 88,
+        "royaltyStatus": "current"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-1.650, 6.200],
+            [-1.600, 6.200],
+            [-1.600, 6.250],
+            [-1.650, 6.250],
+            [-1.650, 6.200]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "asm-001",
+        "name": "Prestea Small Scale",
+        "operator": "Local Cooperative A",
+        "licenseType": "small-scale",
+        "permitStatus": "formalising",
+        "primaryMineral": "Gold",
+        "areaSizeHa": 25,
+        "complianceScore": 45,
+        "royaltyStatus": "arrears"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-2.150, 5.430],
+            [-2.145, 5.430],
+            [-2.145, 5.435],
+            [-2.150, 5.435],
+            [-2.150, 5.430]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "asm-002",
+        "name": "Manso Nkwanta ASM",
+        "operator": "Unknown",
+        "licenseType": "artisanal",
+        "permitStatus": "illegal",
+        "primaryMineral": "Gold",
+        "areaSizeHa": 15,
+        "complianceScore": 0,
+        "royaltyStatus": "arrears"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-1.850, 6.450],
+            [-1.840, 6.450],
+            [-1.840, 6.460],
+            [-1.850, 6.460],
+            [-1.850, 6.450]
+          ]
+        ]
+      }
+    }
+  ]
+}

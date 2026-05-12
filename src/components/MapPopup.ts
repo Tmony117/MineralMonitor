@@ -1,4 +1,4 @@
-import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat } from '@/types';
+import type { ConflictZone, Hotspot, NewsItem, MilitaryBase, StrategicWaterway, APTGroup, NuclearFacility, EconomicCenter, GammaIrradiator, Pipeline, UnderseaCable, CableAdvisory, RepairShip, InternetOutage, AIDataCenter, AisDisruptionEvent, SocialUnrestEvent, MilitaryFlight, MilitaryVessel, MilitaryFlightCluster, MilitaryVesselCluster, NaturalEvent, Port, Spaceport, CriticalMineralProject, CyberThreat, Concession, MiningEquipment } from '@/types';
 import type { TradeRouteSegment } from '@/config/trade-routes';
 import type { AirportDelayAlert, PositionSample } from '@/services/aviation';
 import type { Earthquake } from '@/services/earthquakes';
@@ -84,7 +84,7 @@ function fmtDelayMin(min: number | undefined): string {
   return `<span style="color:${min > 0 ? '#f97316' : '#22c55e'};font-size:10px;margin-left:3px">${min > 0 ? '+' : ''}${min}m</span>`;
 }
 
-export type PopupType = 'conflict' | 'hotspot' | 'earthquake' | 'weather' | 'base' | 'waterway' | 'apt' | 'cyberThreat' | 'nuclear' | 'economic' | 'irradiator' | 'pipeline' | 'cable' | 'cable-advisory' | 'repair-ship' | 'outage' | 'datacenter' | 'datacenterCluster' | 'ais' | 'protest' | 'protestCluster' | 'flight' | 'aircraft' | 'militaryFlight' | 'militaryVessel' | 'militaryFlightCluster' | 'militaryVesselCluster' | 'natEvent' | 'port' | 'spaceport' | 'mineral' | 'startupHub' | 'cloudRegion' | 'techHQ' | 'accelerator' | 'techEvent' | 'techHQCluster' | 'techEventCluster' | 'techActivity' | 'geoActivity' | 'stockExchange' | 'financialCenter' | 'centralBank' | 'commodityHub' | 'iranEvent' | 'gpsJamming' | 'radiation';
+export type PopupType = 'conflict' | 'hotspot' | 'earthquake' | 'weather' | 'base' | 'waterway' | 'apt' | 'cyberThreat' | 'nuclear' | 'economic' | 'irradiator' | 'pipeline' | 'cable' | 'cable-advisory' | 'repair-ship' | 'outage' | 'datacenter' | 'datacenterCluster' | 'ais' | 'protest' | 'protestCluster' | 'flight' | 'aircraft' | 'militaryFlight' | 'militaryVessel' | 'militaryFlightCluster' | 'militaryVesselCluster' | 'natEvent' | 'port' | 'spaceport' | 'mineral' | 'startupHub' | 'cloudRegion' | 'techHQ' | 'accelerator' | 'techEvent' | 'techHQCluster' | 'techEventCluster' | 'techActivity' | 'geoActivity' | 'stockExchange' | 'financialCenter' | 'centralBank' | 'commodityHub' | 'iranEvent' | 'gpsJamming' | 'radiation' | 'concession' | 'miningEquipment';
 
 interface TechEventPopupData {
   id: string;
@@ -625,6 +625,22 @@ export class MapPopup {
     this.repairShips = repairShips;
   }
 
+  /**
+   * Convenience method for DeckGLMap layer handlers: shows a popup anchored to
+   * geographic coordinates rather than pixel (x, y). The popup is positioned
+   * near the center of the viewport so it doesn't depend on a screen click.
+   */
+  public showAt(_lat: number, _lon: number, type: PopupType, data: any): void {
+    const rect = this.container.getBoundingClientRect();
+    // Anchor to centre of the container — callers pass geographic coords only
+    this.show({
+      type,
+      data,
+      x: rect.width / 2,
+      y: rect.height / 2,
+    });
+  }
+
   private renderContent(data: PopupData): string {
     switch (data.type) {
 
@@ -718,6 +734,10 @@ export class MapPopup {
         return this.renderGpsJammingPopup(data.data as GpsJammingPopupData);
       case 'radiation':
         return this.renderRadiationPopup(data.data as RadiationObservation);
+      case 'concession':
+        return this.renderConcessionPopup(data.data as unknown as Concession);
+      case 'miningEquipment':
+        return this.renderMiningEquipmentPopup(data.data as unknown as MiningEquipment);
       default:
         return '';
     }
@@ -3419,6 +3439,113 @@ ${isFeatureAvailable('wingbitsEnrichment') ? '<div class="wingbits-live-section"
           <div class="popup-stat">
             <span class="stat-label">${t('popups.gpsJamming.h3Hex')}</span>
             <span class="stat-value" style="font-size:10px">${escapeHtml(data.h3)}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  // ── MineralMonitor Popup Renderers ────────────────────────────────────────────
+
+  private renderConcessionPopup(concession: Concession): string {
+    const statusColors: Record<string, string> = {
+      active:      '#22c55e',
+      inactive:    '#94a3b8',
+      formalising: '#f59e0b',
+      illegal:     '#ef4444',
+    };
+    const scaleIcons: Record<string, string> = {
+      'large-scale': '🏭',
+      'small-scale':  '⛏️',
+      artisanal:     '🪣',
+    };
+    const statusColor = statusColors[concession.permitStatus] ?? '#94a3b8';
+    const scaleIcon = scaleIcons[concession.licenseType] ?? '⛏️';
+    const complianceBar = concession.complianceScore != null
+      ? `
+        <div style="margin:6px 0">
+          <span style="font-size:10px;opacity:.7">Compliance Score</span>
+          <div style="margin-top:4px;height:6px;border-radius:3px;background:rgba(255,255,255,.1);overflow:hidden">
+            <div style="width:${concession.complianceScore}%;height:100%;background:${concession.complianceScore >= 70 ? '#22c55e' : concession.complianceScore >= 40 ? '#f59e0b' : '#ef4444'};border-radius:3px"></div>
+          </div>
+          <span style="font-size:10px;font-weight:600">${concession.complianceScore}/100</span>
+        </div>` : '';
+    return `
+      <div class="popup-header" style="background:${statusColor}">
+        <span class="popup-title">${scaleIcon} ${escapeHtml(concession.name.toUpperCase())}</span>
+        <span class="popup-badge">${escapeHtml(concession.permitStatus.toUpperCase())}</span>
+        <button class="popup-close" aria-label="Close">×</button>
+      </div>
+      <div class="popup-body">
+        <div class="popup-stats">
+          <div class="popup-stat">
+            <span class="stat-label">Operator</span>
+            <span class="stat-value">${escapeHtml(concession.operator ?? '—')}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">License Type</span>
+            <span class="stat-value">${escapeHtml(concession.licenseType)}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Primary Mineral</span>
+            <span class="stat-value">${escapeHtml(concession.primaryMineral ?? '—')}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Area</span>
+            <span class="stat-value">${concession.areaSizeHa != null ? `${concession.areaSizeHa.toLocaleString()} ha` : '—'}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Royalty Status</span>
+            <span class="stat-value" style="color:${concession.royaltyStatus === 'arrears' ? '#ef4444' : '#22c55e'}">
+              ${escapeHtml(concession.royaltyStatus ?? '—')}
+            </span>
+          </div>
+        </div>
+        ${complianceBar}
+      </div>
+    `;
+  }
+
+  private renderMiningEquipmentPopup(equipment: MiningEquipment): string {
+    const statusColor: Record<string, string> = {
+      active:      '#22c55e',
+      idle:        '#f59e0b',
+      maintenance: '#f97316',
+      offline:     '#ef4444',
+    };
+    const typeIcons: Record<string, string> = {
+      excavator: '🦾',
+      bulldozer:  '🚜',
+      truck:      '🚛',
+      drill:      '🔩',
+      other:      '⚙️',
+    };
+    const color = statusColor[equipment.status] ?? '#94a3b8';
+    const icon = typeIcons[equipment.type] ?? '⚙️';
+    const lastSeen = new Date(equipment.lastSeen).toLocaleString();
+    return `
+      <div class="popup-header" style="background:${color}">
+        <span class="popup-title">${icon} ${escapeHtml(equipment.type.toUpperCase())}</span>
+        <span class="popup-badge">${escapeHtml(equipment.status.toUpperCase())}</span>
+        <button class="popup-close" aria-label="Close">×</button>
+      </div>
+      <div class="popup-body">
+        <div class="popup-stats">
+          <div class="popup-stat">
+            <span class="stat-label">License Plate</span>
+            <span class="stat-value">${escapeHtml(equipment.licensePlate ?? 'UNKNOWN')}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Operator</span>
+            <span class="stat-value">${escapeHtml(equipment.operator ?? '—')}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Speed</span>
+            <span class="stat-value">${equipment.speedKmH != null ? `${equipment.speedKmH.toFixed(1)} km/h` : '—'}</span>
+          </div>
+          <div class="popup-stat">
+            <span class="stat-label">Last Seen</span>
+            <span class="stat-value" style="font-size:10px">${escapeHtml(lastSeen)}</span>
           </div>
         </div>
       </div>

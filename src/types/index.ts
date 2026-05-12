@@ -683,6 +683,11 @@ export interface MapLayers {
   /** Live tanker positions (AIS ship type 80-89) inside chokepoint bboxes.
    *  Refreshed every 60s via getVesselSnapshot. Energy Atlas parity-push. */
   liveTankers?: boolean;
+  // MineralMonitor variant layers
+  concessions?: boolean;
+  miningEquipment?: boolean;
+  protectedAreas?: boolean;
+  landChange?: boolean;
 }
 
 export interface AIDataCenter {
@@ -1514,4 +1519,71 @@ export interface CountryBriefSignals {
   thermalEscalations: number;
   sanctionsDesignations: number;
   sanctionsNewDesignations: number;
+}
+
+// ── MineralMonitor Map Interfaces ─────────────────────────────────────────────
+
+export type PermitStatus = 'active' | 'inactive' | 'formalising' | 'illegal';
+export type LicenseScale = 'large-scale' | 'small-scale' | 'artisanal';
+
+export interface Concession {
+  id: string;
+  name: string;
+  operator?: string;
+  licenseType: LicenseScale;
+  permitStatus: PermitStatus;
+  primaryMineral?: string;
+  areaSizeHa?: number;
+  complianceScore?: number; // 0-100
+  royaltyStatus?: 'current' | 'arrears';
+  lat: number;
+  lon: number;
+  geojson?: any; // Polygon coordinates, if needed directly outside GeoJSON Feature wrapper
+}
+
+export type EquipmentStatus = 'active' | 'idle' | 'maintenance' | 'offline';
+
+export interface MiningEquipment {
+  id: string;
+  type: 'excavator' | 'bulldozer' | 'truck' | 'drill' | 'other';
+  licensePlate?: string;
+  operator?: string;
+  concessionId?: string;
+  lat: number;
+  lon: number;
+  speedKmH?: number;
+  heading?: number;
+  status: EquipmentStatus;
+  lastSeen: string; // ISO string
+}
+
+export interface LandChangeEvent {
+  id: string;
+  lat: number;
+  lon: number;
+  areaHa: number;
+  confidence: number;
+  dateDetected: string; // ISO string
+  type: 'deforestation' | 'water_encroachment' | 'mine_expansion';
+  ndviDelta?: number;
+}
+
+export interface MineralVessel {
+  id: string;
+  name: string;
+  imo: string;
+  mmsi: string;
+  lat: number;
+  lon: number;
+  heading: number;
+  speed: number;
+  status: 'NORMAL' | 'GAP' | 'DARK';
+  lastPort?: string;
+  destination?: string;
+  amlRiskScore?: number;
+  cargoManifest?: Array<{
+    commodity: string;
+    volumeMt: number;
+    declaredValueUSD: number;
+  }>;
 }

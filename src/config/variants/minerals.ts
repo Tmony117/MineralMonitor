@@ -51,11 +51,14 @@ export const DEFAULT_PANELS: Record<string, PanelConfig> = {
 export const DEFAULT_MAP_LAYERS: MapLayers = {
   // ── Core minerals map layers (ENABLED) ────────────────────────────────────
   minerals: true,           // Critical minerals projects (existing layer)
+  concessions: true,        // Mining Concessions (including ASM)
+  miningEquipment: true,    // Real-time tracking of mining equipment
+  protectedAreas: true,     // Protected forests and reserves
+  landChange: true,         // Sentinel-2 satellite land change detection
   miningSites: true,        // Mine sites from commodity-geo.ts
   processingPlants: true,   // Smelters, refineries, separation plants
   commodityPorts: true,     // Mineral export/import ports
   commodityHubs: true,      // Commodity exchanges (LME, CME, SHFE, etc.)
-  tradeRoutes: true,        // Commodity trade routes
   natural: true,            // Earthquakes/natural events (affect mine operations)
   weather: true,            // Weather impacting operations
 
@@ -80,12 +83,13 @@ export const DEFAULT_MAP_LAYERS: MapLayers = {
   ais: true,              // Commodity shipping, tanker routes, bulk carriers
   flights: false,
   // Infrastructure
-  cables: true,           // Undersea cables (trade comms)
-  outages: true,          // Power outages affect operations
+  cables: false,          // Undersea cables (removed - global, not minerals-specific)
+  outages: false,         // Power outages (removed - global, not minerals-specific)
   datacenters: false,
   // Sanctions / financial context
-  sanctions: true,        // Sanctions directly impact commodity trade
-  economic: true,         // Economic centers = commodity demand signals
+  sanctions: false,       // Sanctions (removed - global, not minerals-specific)
+  tradeRoutes: false,     // Trade routes (removed - global, not minerals-specific)
+  economic: false,        // Economic centers (removed - global, not minerals-specific)
   // Environmental / operational risk
   fires: true,            // Fires near mining/forestry operations
   climate: true,          // Climate events disrupt supply chains
@@ -124,11 +128,14 @@ export const DEFAULT_MAP_LAYERS: MapLayers = {
 export const MOBILE_DEFAULT_MAP_LAYERS: MapLayers = {
   // Core minerals layers (limited on mobile for performance)
   minerals: true,
+  concessions: true,
+  miningEquipment: false,
+  protectedAreas: true,
+  landChange: false,
   miningSites: true,
   processingPlants: false,
   commodityPorts: false,
   commodityHubs: true,
-  tradeRoutes: false,
   natural: true,
   weather: false,
 
@@ -149,11 +156,12 @@ export const MOBILE_DEFAULT_MAP_LAYERS: MapLayers = {
   protests: false,
   ais: false,
   flights: false,
-  cables: false,
-  outages: false,
+  cables: false,          // Disabled - global, not minerals-specific
+  outages: false,         // Disabled - global, not minerals-specific
   datacenters: false,
   sanctions: false,
-  economic: false,
+  tradeRoutes: false,     // Disabled - global, not minerals-specific
+  economic: false,        // Disabled - global, not minerals-specific
   fires: false,
   climate: false,
   startupHubs: false,

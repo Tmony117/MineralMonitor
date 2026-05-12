@@ -13,6 +13,10 @@
     "trade", "tariffs", "debt-ceiling",
     "crypto", "business", "markets"
   ],
+  "minerals": [
+    "economy", "fed", "inflation", "trade", "tariffs",
+    "business", "markets"
+  ],
   "excludeKeywords": [
     "nba", "nfl", "mlb", "nhl", "fifa", "world cup", "super bowl", "championship",
     "playoffs", "oscar", "grammy", "emmy", "box office", "movie", "album", "song",

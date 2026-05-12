@@ -29,11 +29,13 @@ import predictionTags from '../../../scripts/data/prediction-tags.json';
 const GEOPOLITICAL_TAGS = predictionTags.geopolitical;
 const TECH_TAGS = predictionTags.tech;
 const FINANCE_TAGS = predictionTags.finance;
+const MINERALS_TAGS = predictionTags.minerals;
 
 interface BootstrapPredictionData {
   geopolitical: PredictionMarket[];
   tech: PredictionMarket[];
   finance?: PredictionMarket[];
+  minerals?: PredictionMarket[];
   fetchedAt: number;
 }
 
@@ -71,6 +73,7 @@ export async function fetchPredictions(opts?: { region?: string }): Promise<Pred
     if (hydrated?.fetchedAt && Date.now() - hydrated.fetchedAt < 40 * 60 * 1000) {
       const variant = SITE_VARIANT === 'tech' ? hydrated.tech
         : SITE_VARIANT === 'finance' ? (hydrated.finance ?? hydrated.geopolitical)
+        : SITE_VARIANT === 'minerals' ? (hydrated.minerals ?? hydrated.finance ?? hydrated.geopolitical)
         : hydrated.geopolitical;
       if (variant && variant.length > 0) {
         return variant
@@ -82,6 +85,7 @@ export async function fetchPredictions(opts?: { region?: string }): Promise<Pred
 
     const tags = SITE_VARIANT === 'tech' ? TECH_TAGS
       : SITE_VARIANT === 'finance' ? FINANCE_TAGS
+      : SITE_VARIANT === 'minerals' ? MINERALS_TAGS
       : GEOPOLITICAL_TAGS;
     const rpcResults = await client.listPredictionMarkets({
       category: tags[0] ?? '',

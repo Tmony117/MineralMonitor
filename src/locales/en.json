@@ -286,6 +286,7 @@
     "marketImplications": "AI Market Implications",
     "map": "Global Situation",
     "techMap": "Global Tech",
+    "mineralsMap": "West Africa Minerals",
     "techHubs": "Hot Tech Hubs",
     "status": "System Status",
     "insights": "AI Insights",
@@ -1312,6 +1313,9 @@
         "financialCenters": "Financial Centers",
         "centralBanks": "Central Banks",
         "commodityHubs": "Commodity Hubs",
+        "miningSites": "Mining Sites",
+        "processingPlants": "Processing Plants",
+        "commodityPorts": "Commodity Ports",
         "gulfInvestments": "GCC Investments",
         "tradeRoutes": "Trade Routes",
         "iranAttacks": "Iran Attacks",
@@ -1372,7 +1376,10 @@
           "militaryStrategic": "Military & Strategic",
           "transport": "Transport",
           "labels": "Labels",
-          "overlays": "Overlays & Labels"
+          "overlays": "Overlays & Labels",
+          "miningOps": "Mining Operations",
+          "logistics": "Logistics & Trade",
+          "riskContext": "Risk Context"
         },
         "descriptions": {
           "techStartupHubs": "Major startup ecosystems (SF, NYC, London, etc.)",
@@ -1421,6 +1428,8 @@
           "militarySpaceports": "Rocket launch sites and space facilities",
           "infraCyberThreats": "Cyber attacks and security events",
           "mineralsFull": "Strategic mineral deposits and mining sites",
+          "processingPlants": "Smelters, refineries, and mineral processing facilities",
+          "commodityPorts": "Mineral export and import ports",
           "techCyberThreats": "Cyber attacks and security events",
           "techEvents": "Major tech conferences and events",
           "techFires": "Active wildfires near tech infrastructure",
