@@ -1,0 +1,41 @@
+[
+  {
+    "id": "eq-001",
+    "type": "excavator",
+    "licensePlate": "EX-TKA-042",
+    "operator": "Gold Fields Ghana",
+    "concessionId": "c-001",
+    "lat": 5.310,
+    "lon": -1.990,
+    "speedKmH": 2.5,
+    "heading": 45,
+    "status": "active",
+    "lastSeen": "2023-10-25T08:30:00Z"
+  },
+  {
+    "id": "eq-002",
+    "type": "truck",
+    "licensePlate": "HD-TKA-015",
+    "operator": "Gold Fields Ghana",
+    "concessionId": "c-001",
+    "lat": 5.315,
+    "lon": -1.985,
+    "speedKmH": 15.0,
+    "heading": 120,
+    "status": "active",
+    "lastSeen": "2023-10-25T08:31:12Z"
+  },
+  {
+    "id": "eq-003",
+    "type": "excavator",
+    "licensePlate": "UNKNOWN",
+    "operator": "Unknown",
+    "concessionId": "asm-002",
+    "lat": 6.455,
+    "lon": -1.845,
+    "speedKmH": 0.0,
+    "heading": 0,
+    "status": "idle",
+    "lastSeen": "2023-10-25T08:00:00Z"
+  }
+]

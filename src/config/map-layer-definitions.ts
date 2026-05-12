@@ -3,7 +3,7 @@ import type { MapLayers } from '@/types';
 import { isDesktopRuntime } from '@/services/runtime';
 
 export type MapRenderer = 'flat' | 'globe';
-export type MapVariant = 'full' | 'tech' | 'finance' | 'happy' | 'commodity' | 'energy';
+export type MapVariant = 'minerals';
 
 const _desktop = isDesktopRuntime();
 
@@ -104,62 +104,34 @@ export const LAYER_REGISTRY: Record<keyof MapLayers, LayerDefinition> = {
   storageFacilities:        def('storageFacilities',        '&#127959;', 'storageFacilities',        'Storage Facilities', ['flat'], undefined, true),
   fuelShortages:            def('fuelShortages',            '&#9881;',   'fuelShortages',            'Fuel Shortages', ['flat'], undefined, true),
   liveTankers:              def('liveTankers',              '&#128674;', 'liveTankers',              'Live Tanker Positions', ['flat'], undefined, true),
+  concessions:              def('concessions',              '&#128301;', 'concessions',              'Mining Concessions', ['flat', 'globe']),
+  miningEquipment:          def('miningEquipment',          '&#128668;', 'miningEquipment',          'Mining Equipment', ['flat', 'globe']),
+  protectedAreas:           def('protectedAreas',           '&#127795;', 'protectedAreas',           'Protected Areas', ['flat', 'globe']),
+  landChange:               def('landChange',               '&#127758;', 'landChange',               'Land Change / Deforestation', ['flat', 'globe']),
 };
 
 const VARIANT_LAYER_ORDER: Record<MapVariant, Array<keyof MapLayers>> = {
-  full: [
-    'iranAttacks', 'hotspots', 'conflicts',
-    'bases', 'nuclear', 'irradiators', 'radiationWatch', 'spaceports',
-    'cables', 'pipelines', 'storageFacilities', 'fuelShortages', 'datacenters', 'military',
-    'ais', 'tradeRoutes', 'flights', 'protests',
-    'ucdpEvents', 'displacement', 'climate', 'weather',
-    'outages', 'cyberThreats', 'natural', 'fires',
-    'waterways', 'economic', 'minerals', 'gpsJamming',
-    'satellites', 'ciiChoropleth', 'resilienceScore', 'sanctions', 'dayNight', 'webcams',
-    'diseaseOutbreaks',
-  ],
-  tech: [
-    'startupHubs', 'techHQs', 'accelerators', 'cloudRegions',
-    'datacenters', 'cables', 'outages', 'cyberThreats',
-    'techEvents', 'resilienceScore', 'natural', 'fires', 'dayNight',
-  ],
-  finance: [
-    'stockExchanges', 'financialCenters', 'centralBanks', 'commodityHubs',
-    'gulfInvestments', 'tradeRoutes', 'cables', 'pipelines',
-    'outages', 'weather', 'economic', 'waterways',
-    'resilienceScore', 'natural', 'cyberThreats', 'sanctions', 'dayNight',
-  ],
-  happy: [
-    'positiveEvents', 'kindness', 'happiness', 'resilienceScore',
-    'speciesRecovery', 'renewableInstallations',
-  ],
-  commodity: [
-    'miningSites', 'processingPlants', 'commodityPorts', 'commodityHubs',
-    'minerals', 'pipelines', 'waterways', 'tradeRoutes',
-    'ais', 'economic', 'fires', 'climate',
-    'resilienceScore', 'natural', 'weather', 'outages', 'sanctions', 'dayNight',
-  ],
-  energy: [
-    // Core energy infrastructure — mirror of ENERGY_MAP_LAYERS in panels.ts
-    'pipelines', 'storageFacilities', 'fuelShortages', 'waterways', 'commodityPorts', 'commodityHubs',
-    'ais', 'liveTankers', 'tradeRoutes', 'minerals',
-    // Energy-adjacent context
-    'sanctions', 'fires', 'climate', 'weather', 'outages', 'natural',
-    'resilienceScore', 'dayNight',
+  minerals: [
+    // Core minerals map layers
+    'concessions', 'miningEquipment', 'miningSites', 'processingPlants', 'commodityPorts', 'commodityHubs',
+    'minerals', 'protectedAreas', 'landChange',
+    // General context
+    'ais', 'waterways', 'tradeRoutes', 'economic', 'fires', 'climate',
+    'natural', 'weather', 'dayNight',
   ],
 };
 
 const I18N_PREFIX = 'components.deckgl.layers.';
 
 export function getLayersForVariant(variant: MapVariant, renderer: MapRenderer): LayerDefinition[] {
-  const keys = VARIANT_LAYER_ORDER[variant] ?? VARIANT_LAYER_ORDER.full;
+  const keys = VARIANT_LAYER_ORDER[variant] ?? VARIANT_LAYER_ORDER.minerals;
   return keys
     .map(k => LAYER_REGISTRY[k])
     .filter(d => d.renderers.includes(renderer));
 }
 
 export function getAllowedLayerKeys(variant: MapVariant): Set<keyof MapLayers> {
-  return new Set(VARIANT_LAYER_ORDER[variant] ?? VARIANT_LAYER_ORDER.full);
+  return new Set(VARIANT_LAYER_ORDER[variant] ?? VARIANT_LAYER_ORDER.minerals);
 }
 
 export function sanitizeLayersForVariant(layers: MapLayers, variant: MapVariant): MapLayers {

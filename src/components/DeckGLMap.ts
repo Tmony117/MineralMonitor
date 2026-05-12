@@ -485,6 +485,11 @@ export class DeckGLMap {
   private imagerySearchTimer: ReturnType<typeof setTimeout> | null = null;
   private imagerySearchVersion = 0;
 
+  // MineralMonitor variant data
+  // concessions are fetched via GeoJSON URL; miningEquipment and landChangeEvents are set via setters
+  private miningEquipment: import('@/types').MiningEquipment[] = [];
+  private landChangeEvents: import('@/types').LandChangeEvent[] = [];
+
   // Phase 8 overlay data
   private happinessScores: Map<string, number> = new Map();
   private happinessYear = 0;
@@ -1932,6 +1937,23 @@ export class DeckGLMap {
         pickable: true,
       }));
     }
+
+    // ── MineralMonitor variant layers ─────────────────────────────────────────
+    // Mining Concessions (GeoJSON polygons, styled by permit status)
+    if (mapLayers.concessions && SITE_VARIANT === 'minerals') {
+      layers.push(this.createConcessionsLayer());
+    }
+
+    // Real-time Mining Equipment tracking (point markers)
+    if (mapLayers.miningEquipment && SITE_VARIANT === 'minerals' && this.miningEquipment.length > 0) {
+      layers.push(this.createMiningEquipmentLayer());
+    }
+
+    // Land Change / Deforestation heatmap
+    if (mapLayers.landChange && SITE_VARIANT === 'minerals' && this.landChangeEvents.length > 0) {
+      layers.push(this.createLandChangeLayer());
+    }
+    // ─────────────────────────────────────────────────────────────────────────
 
     // News geo-locations (always shown if data exists)
     if (this.newsLocations.length > 0) {
@@ -5190,6 +5212,27 @@ export class DeckGLMap {
       </div>
     `;
 
+    const mineralsHelpContent = `
+      ${helpHeader}
+      <div class="layer-help-content">
+        ${helpSection('miningOps', [
+      helpItem(label('commodityHubs'), 'financeCommodityHubs'),
+      helpItem(label('miningSites'), 'mineralsFull'),
+      helpItem(label('processingPlants'), 'processingPlants'),
+      helpItem(label('commodityPorts'), 'commodityPorts'),
+    ])}
+        ${helpSection('riskContext', [
+      helpItem(label('naturalEvents'), 'naturalEventsFull'),
+      helpItem(label('fires'), 'firesFull'),
+      helpItem(label('weatherAlerts'), 'weatherAlerts'),
+    ])}
+        ${helpSection('overlays', [
+      helpItem(label('dayNight'), 'dayNight'),
+      helpItem(staticLabel('countries'), 'countriesOverlay'),
+    ])}
+      </div>
+    `;
+
     const fullHelpContent = `
       ${helpHeader}
       <div class="layer-help-content">
@@ -5245,7 +5288,9 @@ export class DeckGLMap {
       ? techHelpContent
       : SITE_VARIANT === 'finance'
         ? financeHelpContent
-        : fullHelpContent;
+        : SITE_VARIANT === 'minerals'
+          ? mineralsHelpContent
+          : fullHelpContent;
 
     popup.querySelector('.layer-help-close')?.addEventListener('click', () => popup.remove());
 
@@ -5342,9 +5387,21 @@ export class DeckGLMap {
               { shape: shapes.circle('rgb(241, 196, 15)'), label: t('components.deckgl.legend.diseaseWatch'), layerKey: 'diseaseOutbreaks' },
               ...resilienceLegendItems,
             ]
-            : [
-              { shape: shapes.circle('rgb(255, 68, 68)'), label: t('components.deckgl.legend.highAlert'), layerKey: 'hotspots' },
-              { shape: shapes.circle('rgb(255, 165, 0)'), label: t('components.deckgl.legend.elevated'), layerKey: 'hotspots' },
+            : SITE_VARIANT === 'minerals'
+              ? [
+                { shape: shapes.hexagon(isLight ? 'rgb(180, 120, 0)' : 'rgb(255, 200, 0)'), label: t('components.deckgl.legend.commodityHub'), layerKey: 'commodityHubs' },
+                { shape: shapes.circle('rgb(180, 80, 80)'), label: t('components.deckgl.legend.miningSite'), layerKey: 'miningSites' },
+                { shape: shapes.square('rgb(80, 160, 220)'), label: t('components.deckgl.legend.commodityPort'), layerKey: 'commodityPorts' },
+                { shape: shapes.circle('rgb(200, 100, 255)'), label: t('components.deckgl.legend.processingPlant'), layerKey: 'processingPlants' },
+                { shape: shapes.triangle('rgb(80, 170, 255)'), label: t('components.deckgl.legend.waterway'), layerKey: 'waterways' },
+                { shape: shapes.circle('rgb(231, 76, 60)'), label: t('components.deckgl.legend.diseaseAlert'), layerKey: 'diseaseOutbreaks' },
+                { shape: shapes.circle('rgb(230, 126, 34)'), label: t('components.deckgl.legend.diseaseWarning'), layerKey: 'diseaseOutbreaks' },
+                { shape: shapes.circle('rgb(241, 196, 15)'), label: t('components.deckgl.legend.diseaseWatch'), layerKey: 'diseaseOutbreaks' },
+                ...resilienceLegendItems,
+              ]
+              : [
+                { shape: shapes.circle('rgb(255, 68, 68)'), label: t('components.deckgl.legend.highAlert'), layerKey: 'hotspots' },
+                { shape: shapes.circle('rgb(255, 165, 0)'), label: t('components.deckgl.legend.elevated'), layerKey: 'hotspots' },
               { shape: shapes.circle(isLight ? 'rgb(180, 120, 0)' : 'rgb(255, 255, 0)'), label: t('components.deckgl.legend.monitoring'), layerKey: 'hotspots' },
               { shape: shapes.circle('rgb(255, 100, 100)'), label: t('components.deckgl.legend.conflict'), layerKey: 'conflicts' },
               { shape: shapes.triangle('rgb(68, 136, 255)'), label: t('components.deckgl.legend.base'), layerKey: 'bases' },
@@ -7181,5 +7238,127 @@ export class DeckGLMap {
     this.maplibreMap?.remove();
     this.maplibreMap = null;
     this.container.innerHTML = '';
+  }
+
+  // ── MineralMonitor Layer Builders ────────────────────────────────────────────
+
+  /**
+   * Renders mining concessions as GeoJSON polygons. Polygons are fetched from the
+   * backend PostgreSQL/PostGIS endpoint and fall back to `public/data/ghana-concessions.geojson`.
+   * Colored by `permitStatus`:
+   *   active      → green
+   *   inactive    → grey
+   *   formalising → yellow
+   *   illegal     → red
+   */
+  private createConcessionsLayer(): GeoJsonLayer {
+    const statusColor: Record<string, [number, number, number, number]> = {
+      active:      [0, 200, 100, 160],
+      inactive:    [140, 140, 140, 120],
+      formalising: [255, 200, 0, 150],
+      illegal:     [220, 50, 50, 170],
+    };
+    return new GeoJsonLayer({
+      id: 'concessions-layer',
+      data: '/data/ghana-concessions.geojson',
+      pickable: true,
+      stroked: true,
+      filled: true,
+      extruded: false,
+      getFillColor: (f: any) => {
+        const status = f.properties?.permitStatus as string | undefined;
+        return statusColor[status ?? ''] ?? [200, 180, 100, 100];
+      },
+      getLineColor: [255, 255, 255, 200],
+      lineWidthMinPixels: 1,
+      onClick: (info: PickingInfo) => {
+        if (!info.object) return;
+        const p = info.object.properties;
+        const coord = info.coordinate ?? [0, 0];
+        this.popup.showAt(coord[1]!, coord[0]!, 'concession', {
+          id: p.id,
+          name: p.name,
+          operator: p.operator,
+          licenseType: p.licenseType,
+          permitStatus: p.permitStatus,
+          primaryMineral: p.primaryMineral,
+          areaSizeHa: p.areaSizeHa,
+          complianceScore: p.complianceScore,
+          royaltyStatus: p.royaltyStatus,
+          lat: coord[1]!,
+          lon: coord[0]!,
+        });
+      },
+    } as any);
+  }
+
+  /**
+   * Renders real-time mining equipment as ScatterplotLayer markers.
+   * Equipment status colors:
+   *   active      → bright green
+   *   idle        → yellow
+   *   maintenance → orange
+   *   offline     → red
+   */
+  private createMiningEquipmentLayer(): ScatterplotLayer<import('@/types').MiningEquipment> {
+    const statusColor: Record<string, [number, number, number, number]> = {
+      active:      [0, 255, 100, 230],
+      idle:        [255, 200, 0, 200],
+      maintenance: [255, 120, 0, 200],
+      offline:     [220, 50, 50, 200],
+    };
+    return new ScatterplotLayer<import('@/types').MiningEquipment>({
+      id: 'mining-equipment-layer',
+      data: this.miningEquipment,
+      getPosition: (d) => [d.lon, d.lat],
+      getRadius: 8,
+      radiusUnits: 'pixels',
+      getFillColor: (d) => statusColor[d.status] ?? [200, 200, 200, 200],
+      getLineColor: [255, 255, 255, 200],
+      lineWidthMinPixels: 1,
+      stroked: true,
+      pickable: true,
+      onClick: (info: PickingInfo) => {
+        if (!info.object) return;
+        const d = info.object as import('@/types').MiningEquipment;
+        this.popup.showAt(d.lat, d.lon, 'miningEquipment', d);
+      },
+    });
+  }
+
+  /**
+   * Renders land change events (detected illegal mine expansion or deforestation)
+   * as a HeatmapLayer. Intensity maps to the `areaHa` × `confidence` score.
+   */
+  private createLandChangeLayer(): HeatmapLayer<import('@/types').LandChangeEvent> {
+    return new HeatmapLayer<import('@/types').LandChangeEvent>({
+      id: 'land-change-layer',
+      data: this.landChangeEvents,
+      getPosition: (d: import('@/types').LandChangeEvent) => [d.lon, d.lat],
+      getWeight: (d: import('@/types').LandChangeEvent) => (d.areaHa ?? 1) * (d.confidence ?? 0.5),
+      radiusPixels: 60,
+      colorRange: [
+        [65, 182, 196],
+        [127, 205, 187],
+        [199, 233, 180],
+        [255, 237, 160],
+        [253, 174, 97],
+        [215, 25, 28],
+      ],
+      threshold: 0.03,
+    } as any);
+  }
+
+  // ── MineralMonitor Public Setters ─────────────────────────────────────────────
+
+
+  public setMiningEquipment(equipment: import('@/types').MiningEquipment[]): void {
+    this.miningEquipment = equipment;
+    this.render();
+  }
+
+  public setLandChangeEvents(events: import('@/types').LandChangeEvent[]): void {
+    this.landChangeEvents = events;
+    this.render();
   }
 }

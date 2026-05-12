@@ -426,10 +426,20 @@ export class MapComponent {
       'weather', 'fires',                     // operational risk
       'economic',                             // infrastructure context
     ];
+    // Minerals variant — mining operations focus (no global geopolitics or trade)
+    const mineralsLayers: (keyof MapLayers)[] = [
+      'commodityHubs',                        // mineral exchanges / hubs
+      'miningSites',                          // active mining operations
+      'processingPlants',                     // mineral processing facilities
+      'commodityPorts',                       // mineral export ports
+      'natural',                              // earthquakes near mines
+      'weather', 'fires',                     // operational risk
+    ];
     const layers = SITE_VARIANT === 'tech' ? techLayers
                  : SITE_VARIANT === 'finance' ? financeLayers
                  : SITE_VARIANT === 'happy' ? happyLayers
                  : SITE_VARIANT === 'energy' ? energyLayers
+                 : SITE_VARIANT === 'minerals' ? mineralsLayers
                  : fullLayers;
     const layerLabelKeys: Partial<Record<keyof MapLayers, string>> = {
       hotspots: 'components.deckgl.layers.intelHotspots',
@@ -457,6 +467,9 @@ export class MapComponent {
       financialCenters: 'components.deckgl.layers.financialCenters',
       centralBanks: 'components.deckgl.layers.centralBanks',
       commodityHubs: 'components.deckgl.layers.commodityHubs',
+      miningSites: 'components.deckgl.layers.miningSites',
+      processingPlants: 'components.deckgl.layers.processingPlants',
+      commodityPorts: 'components.deckgl.layers.commodityPorts',
       gulfInvestments: 'components.deckgl.layers.gulfInvestments',
       iranAttacks: 'components.deckgl.layers.iranAttacks',
       gpsJamming: 'components.deckgl.layers.gpsJamming',
@@ -464,6 +477,10 @@ export class MapComponent {
     };
     const getLayerLabel = (layer: keyof MapLayers): string => {
       if (layer === 'sanctions') return t('components.deckgl.layerHelp.labels.sanctions');
+      // Minerals-specific label overrides
+      if (SITE_VARIANT === 'minerals') {
+        if (layer === 'commodityHubs') return 'Mineral Exchanges';
+      }
       const key = layerLabelKeys[layer];
       return key ? t(key) : layer;
     };
@@ -594,6 +611,23 @@ export class MapComponent {
       </div>
     `;
 
+    const mineralsHelpContent = `
+      ${helpHeader}
+      <div class="layer-help-content">
+        ${helpSection('miningOps', [
+      helpItem(label('commodityHubs'), 'financeCommodityHubs'),
+      helpItem(label('miningSites'), 'mineralsFull'),
+      helpItem(label('processingPlants'), 'processingPlants'),
+      helpItem(label('commodityPorts'), 'commodityPorts'),
+    ])}
+        ${helpSection('riskContext', [
+      helpItem(label('naturalEvents'), 'naturalEventsFull'),
+      helpItem(label('fires'), 'firesFull'),
+      helpItem(label('weatherAlerts'), 'weatherAlerts'),
+    ])}
+      </div>
+    `;
+
     const fullHelpContent = `
       ${helpHeader}
       <div class="layer-help-content">
@@ -646,7 +680,9 @@ export class MapComponent {
       ? techHelpContent
       : SITE_VARIANT === 'finance'
         ? financeHelpContent
-        : fullHelpContent;
+        : SITE_VARIANT === 'minerals'
+          ? mineralsHelpContent
+          : fullHelpContent;
 
     popup.querySelector('.layer-help-close')?.addEventListener('click', () => popup.remove());
 
