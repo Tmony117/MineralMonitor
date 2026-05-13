@@ -24,7 +24,7 @@
     "asFeaturedIn": "소개된 매체"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Mineral Monitor Pro",
     "proDesc": "당신의 AI 애널리스트. 개인 인텔리전스 데스크. 그 위에 쌓을 수 있는 플랫폼. 30+개 실시간 서비스를 하나의 키로.",
     "proF1": "WM Analyst 채팅 — 30+개 서비스 대화형 질의",
     "proF2": "AI 다이제스트 — 매일, 하루 두 번 또는 매주 — Slack, Discord, Telegram, 이메일 또는 웹훅으로",
@@ -37,7 +37,7 @@
     "proF9": "AI Market Implications 및 Regional Intelligence (출시 예정: 궤도 감시, 프리미엄 지도 레이어, 확장 이력)",
     "proCta": "얼리 액세스 예약",
     "choosePlan": "플랜 선택",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Mineral Monitor Enterprise",
     "entDesc": "공유 모니터링, API 접근, 배포 옵션, TV 앱, 직접 지원이 필요한 팀을 위한.",
     "entF1": "Pro의 모든 것, 추가로:",
     "entF2": "라이브 엣지 위성 이미지와 SAR",
@@ -82,7 +82,7 @@
     "windowTitle": "worldmonitor.app — 라이브 대시보드",
     "openFullScreen": "전체 화면으로 열기",
     "tryLiveDashboard": "라이브 대시보드 체험",
-    "iframeTitle": "World Monitor — 라이브 인텔리전스 대시보드",
+    "iframeTitle": "Mineral Monitor — 라이브 인텔리전스 대시보드",
     "description": "3D WebGL 지구본 · 45+ 인터랙티브 지도 레이어 · 실시간 시장, 매크로, 지정학, 에너지, 인프라 데이터"
   },
   "socialProof": {
@@ -110,7 +110,7 @@
     "teamsDesc": "개인 사용에서 공유 워크플로, API 접근, TV 앱, 관리형 배포로 이동."
   },
   "dataCoverage": {
-    "title": "World Monitor가 추적하는 것",
+    "title": "Mineral Monitor가 추적하는 것",
     "subtitle": "30+개 서비스 도메인을 동시 수집. 시장, 매크로, 지정학, 에너지, 인프라 — 모두 정규화되어 WebGL 지구본 위에 렌더링.",
     "markets": "금융 시장과 주식",
     "marketsDesc": "글로벌 주식 분석, 원자재, 크립토, ETF 플로우, 애널리스트 목표, FRED 매크로 데이터",
@@ -197,7 +197,7 @@
   "apiSection": {
     "apiTier": "API 티어",
     "title": "프로그래밍 인텔리전스",
-    "subtitle": "World Monitor 데이터 위에 구축하는 개발자, 애널리스트, 팀을 위해. Pro와 별도 — 둘 다 또는 하나를 사용.",
+    "subtitle": "Mineral Monitor 데이터 위에 구축하는 개발자, 애널리스트, 팀을 위해. Pro와 별도 — 둘 다 또는 하나를 사용.",
     "restApi": "30+개 서비스 도메인 전반의 REST API",
     "authenticated": "키별 인증, 티어별 레이트 제한",
     "structured": "캐시 헤더와 OpenAPI 3.1 문서가 포함된 구조화된 JSON",
@@ -216,7 +216,7 @@
     "security": "정부급 보안",
     "securityDesc": "에어갭 배포, 온프레미스 Docker, 전용 클라우드 테넌트, SOC 2 Type II 경로, SSO/MFA, 전체 감사 추적.",
     "aiAgents": "AI 에이전트와 MCP",
-    "aiAgentsDesc": "투자자 페르소나를 가진 자율 인텔리전스 에이전트. World Monitor를 MCP를 통해 Claude, GPT, 자체 LLM에 도구로 연결.",
+    "aiAgentsDesc": "투자자 페르소나를 가진 자율 인텔리전스 에이전트. Mineral Monitor를 MCP를 통해 Claude, GPT, 자체 LLM에 도구로 연결.",
     "dataLayers": "확장된 데이터 레이어",
     "dataLayersDesc": "전 세계 매핑된 수만 개의 인프라 자산. 변화 감지와 SAR를 갖춘 위성 이미지 통합.",
     "connectors": "100+ 데이터 커넥터",
@@ -296,7 +296,7 @@
   },
   "faq": {
     "title": "자주 묻는 질문",
-    "q1": "World Monitor는 여전히 무료인가요?",
+    "q1": "Mineral Monitor는 여전히 무료인가요?",
     "a1": "네. 핵심 플랫폼은 무료로 유지됩니다. Pro는 Equity research, 매크로 분석, AI 브리핑을 추가합니다. Enterprise는 팀 배포와 TV 앱을 추가합니다.",
     "q2": "왜 Pro를 결제해야 하나요?",
     "a2": "Pro는 주식 모니터링, 지정학 분석, 경제 분석, AI 일일 브리핑을 원하는 투자자, 애널리스트, 전문가를 위한 것입니다 — 모두 하나의 키 아래에.",
@@ -305,7 +305,7 @@
     "q4": "Pro로 시작해서 나중에 업그레이드할 수 있나요?",
     "a4": "네. Pro는 진지한 개인에게 잘 맞습니다. 팀과 배포 니즈가 커질 때 Enterprise가 있습니다.",
     "q5": "이것은 분쟁 모니터링만을 위한 것인가요?",
-    "a5": "아닙니다. World Monitor는 주로 주식 시장, 거시경제, 지정학 분석, 에너지, 인프라 등을 다루는 글로벌 인텔리전스 플랫폼입니다. 분쟁 추적은 여러 기능 중 하나일 뿐 — 초점은 아닙니다.",
+    "a5": "아닙니다. Mineral Monitor는 주로 주식 시장, 거시경제, 지정학 분석, 에너지, 인프라 등을 다루는 글로벌 인텔리전스 플랫폼입니다. 분쟁 추적은 여러 기능 중 하나일 뿐 — 초점은 아닙니다.",
     "q6": "왜 핵심 플랫폼을 무료로 유지하나요?",
     "a6": "공공 접근이 중요하기 때문입니다. 유료 플랜은 진지한 사용자와 조직을 위한 더 깊은 워크플로를 자금 지원합니다.",
     "q7": "여전히 자체 API 키를 사용할 수 있나요?",
@@ -325,7 +325,7 @@
   },
   "finalCta": {
     "title": "Pro로 시작하세요. Enterprise로 확장하세요.",
-    "subtitle": "World Monitor를 무료로 계속 사용하거나, Equity research, 매크로 분석, AI 브리핑을 위해 업그레이드하세요. 조직에 팀 액세스, TV 앱, API 지원이 필요하면 저희와 상담하세요.",
+    "subtitle": "Mineral Monitor를 무료로 계속 사용하거나, Equity research, 매크로 분석, AI 브리핑을 위해 업그레이드하세요. 조직에 팀 액세스, TV 앱, API 지원이 필요하면 저희와 상담하세요.",
     "getPro": "얼리 액세스 예약",
     "talkToSales": "영업 문의"
   },
@@ -349,8 +349,8 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "방금 World Monitor Pro 대기자 명단에 등록했습니다 — 하나의 플랫폼에서 주식 모니터링, 지정학 분석, 일일 AI 브리핑. 함께하세요:",
-    "joinWaitlistShare": "World Monitor Pro 대기자 명단에 참여:",
+    "shareText": "방금 Mineral Monitor Pro 대기자 명단에 등록했습니다 — 하나의 플랫폼에서 주식 모니터링, 지정학 분석, 일일 AI 브리핑. 함께하세요:",
+    "joinWaitlistShare": "Mineral Monitor Pro 대기자 명단에 참여:",
     "youreIn": "참여 완료!",
     "invitedBanner": "초대되었습니다 — 대기자 명단에 참여"
   },

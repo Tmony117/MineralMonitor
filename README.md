@@ -1,4 +1,4 @@
-# World Monitor
+# Mineral Monitor
 
 **Real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
 
@@ -31,7 +31,7 @@
   <a href="https://www.worldmonitor.app/docs/contributing"><strong>Contributing</strong></a>
 </p>
 
-![World Monitor Dashboard](docs/images/worldmonitor-7-mar-2026.jpg)
+![Mineral Monitor Dashboard](docs/images/worldmonitor-7-mar-2026.jpg)
 
 ---
 

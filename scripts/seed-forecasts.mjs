@@ -14320,7 +14320,7 @@ async function callForecastLLM(systemPrompt, userPrompt, options = {}) {
           Authorization: `Bearer ${apiKey}`,
           'Content-Type': 'application/json',
           'User-Agent': CHROME_UA,
-          ...(provider.name === 'openrouter' ? { 'HTTP-Referer': 'https://worldmonitor.app', 'X-Title': 'World Monitor' } : {}),
+          ...(provider.name === 'openrouter' ? { 'HTTP-Referer': 'https://worldmonitor.app', 'X-Title': 'Mineral Monitor' } : {}),
         },
         body: JSON.stringify({
           model: provider.model,

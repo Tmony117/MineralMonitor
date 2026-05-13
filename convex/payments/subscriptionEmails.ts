@@ -10,7 +10,7 @@ import { internalAction } from "../_generated/server";
 import { PRODUCT_CATALOG } from "../config/productCatalog";
 
 const RESEND_URL = "https://api.resend.com/emails";
-const FROM = "World Monitor <noreply@worldmonitor.app>";
+const FROM = "Mineral Monitor <noreply@worldmonitor.app>";
 const ADMIN_EMAIL = "elie@worldmonitor.app";
 
 const PLAN_DISPLAY: Record<string, string> = {
@@ -178,7 +178,7 @@ function userWelcomeHtml(planName: string, planKey: string): string {
           <img src="https://www.worldmonitor.app/favico/android-chrome-192x192.png" width="40" height="40" alt="WorldMonitor" style="border-radius: 50%; display: block;" />
         </td>
         <td style="padding-left: 12px;">
-          <div style="font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">WORLD MONITOR</div>
+          <div style="font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.5px;">Mineral Monitor</div>
         </td>
       </tr>
     </table>
@@ -200,11 +200,11 @@ function userWelcomeHtml(planName: string, planKey: string): string {
 
   <div style="border-top: 1px solid #1a1a1a; padding: 24px 32px; text-align: center;">
     <div style="margin-bottom: 16px;">
-      <a href="https://x.com/eliehabib" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">X / Twitter</a>
+      <a href="https://x.com/Smart-Innovations-Ghana" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">X / Twitter</a>
       <a href="https://github.com/koala73/worldmonitor" style="color: #666; text-decoration: none; font-size: 12px; margin: 0 12px;">GitHub</a>
     </div>
     <p style="font-size: 11px; color: #444; margin: 0; line-height: 1.6;">
-      World Monitor \u2014 Real-time intelligence for a connected world.<br />
+      Mineral Monitor \u2014 Real-time intelligence for a connected world.<br />
       <a href="https://worldmonitor.app" style="color: #4ade80; text-decoration: none;">worldmonitor.app</a>
     </p>
   </div>
@@ -317,7 +317,7 @@ export const sendSubscriptionEmails = internalAction({
     await sendEmail(
       apiKey,
       args.userEmail,
-      `Welcome to World Monitor ${planName}`,
+      `Welcome to Mineral Monitor ${planName}`,
       userWelcomeHtml(planName, args.planKey),
       ADMIN_EMAIL,
     );

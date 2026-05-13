@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to World Monitor are documented here.
+All notable changes to Mineral Monitor are documented here.
 
 ## [Unreleased]
 

@@ -27,8 +27,8 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 const isoDate = pubDate.toISOString();
 const isoModifiedDate = modifiedDate ? modifiedDate.toISOString() : isoDate;
 const DEFAULT_AUTHOR = 'Elie Habib';
-const DEFAULT_AUTHOR_URL = 'https://x.com/eliehabib';
-const DEFAULT_AUTHOR_BIO = 'Founder of World Monitor. Previously co-founder &amp; CEO of Anghami (NASDAQ: ANGH). Building open-source global intelligence infrastructure.';
+const DEFAULT_AUTHOR_URL = 'https://x.com/Smart-Innovations-Ghana';
+const DEFAULT_AUTHOR_BIO = 'Founder of Mineral Monitor. Previously co-founder &amp; CEO of Anghami (NASDAQ: ANGH). Building open-source global intelligence infrastructure.';
 const DEFAULT_AUTHOR_GITHUB = 'koala73';
 const authorName = author || DEFAULT_AUTHOR;
 const resolvedAuthorUrl = authorUrl || (authorName === DEFAULT_AUTHOR ? DEFAULT_AUTHOR_URL : undefined);
@@ -71,7 +71,7 @@ const jsonLd = {
   },
   "publisher": {
     "@type": "Organization",
-    "name": "World Monitor",
+    "name": "Mineral Monitor",
     "url": "https://worldmonitor.app",
     "logo": {
       "@type": "ImageObject",

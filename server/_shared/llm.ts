@@ -79,7 +79,7 @@ export function getProviderCredentials(
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
         'HTTP-Referer': 'https://worldmonitor.app',
-        'X-Title': 'World Monitor',
+        'X-Title': 'Mineral Monitor',
       },
     };
   }

@@ -45,7 +45,7 @@ const DEFAULT_PROVIDERS = [
       Authorization: `Bearer ${key}`,
       'Content-Type': 'application/json',
       'HTTP-Referer': 'https://worldmonitor.app',
-      'X-Title': 'World Monitor',
+      'X-Title': 'Mineral Monitor',
       'User-Agent': CHROME_UA,
     }),
   },

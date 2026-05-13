@@ -1,6 +1,6 @@
-# 🌍 Self-Hosting World Monitor
+# 🌍 Self-Hosting Mineral Monitor
 
-Run the full World Monitor stack locally with Docker/Podman.
+Run the full Mineral Monitor stack locally with Docker/Podman.
 
 ## 📋 Prerequisites
 

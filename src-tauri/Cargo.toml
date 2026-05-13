@@ -1,8 +1,8 @@
 [package]
-name = "world-monitor"
+name = "mineral-monitor"
 version = "2.8.0"
-description = "World Monitor desktop application"
-authors = ["World Monitor"]
+description = "Mineral Monitor desktop application"
+authors = ["Mineral Monitor"]
 edition = "2021"
 
 [build-dependencies]

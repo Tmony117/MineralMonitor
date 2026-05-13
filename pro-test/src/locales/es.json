@@ -24,7 +24,7 @@
     "asFeaturedIn": "Destacado en"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Mineral Monitor Pro",
     "proDesc": "Tu analista de IA. Una mesa de inteligencia personal. Una plataforma sobre la que construir. Una clave para 30+ servicios en vivo.",
     "proF1": "Chat WM Analyst — consulta los 30+ servicios de forma conversacional",
     "proF2": "Resumen de IA — diario, dos veces al día o semanal — a Slack, Discord, Telegram, Email o webhook",
@@ -37,7 +37,7 @@
     "proF9": "AI Market Implications y Regional Intelligence (Próximamente: vigilancia orbital, capas de mapa premium, historial extendido)",
     "proCta": "Reserva tu acceso anticipado",
     "choosePlan": "Elige tu plan",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Mineral Monitor Enterprise",
     "entDesc": "Para equipos que necesitan monitoreo compartido, acceso API, opciones de despliegue, apps de TV y soporte directo.",
     "entF1": "Todo lo de Pro, además:",
     "entF2": "Imágenes satelitales en vivo y SAR",
@@ -82,7 +82,7 @@
     "windowTitle": "worldmonitor.app — Panel en vivo",
     "openFullScreen": "Abrir pantalla completa",
     "tryLiveDashboard": "Prueba el panel en vivo",
-    "iframeTitle": "World Monitor — Panel de inteligencia en vivo",
+    "iframeTitle": "Mineral Monitor — Panel de inteligencia en vivo",
     "description": "Globo WebGL 3D · 45+ capas de mapa interactivas · Datos de mercados, macro, geopolítica, energía e infraestructura en tiempo real"
   },
   "socialProof": {
@@ -110,7 +110,7 @@
     "teamsDesc": "Pasa del uso individual a flujos compartidos, acceso API, apps de TV y despliegues gestionados."
   },
   "dataCoverage": {
-    "title": "Qué rastrea World Monitor",
+    "title": "Qué rastrea Mineral Monitor",
     "subtitle": "30+ dominios de servicio ingeridos simultáneamente. Mercados, macro, geopolítica, energía, infraestructura — todo normalizado y renderizado en un globo WebGL.",
     "markets": "Mercados financieros y renta variable",
     "marketsDesc": "Análisis global de acciones, materias primas, cripto, flujos de ETF, objetivos de analistas y datos macro FRED",
@@ -197,7 +197,7 @@
   "apiSection": {
     "apiTier": "NIVEL API",
     "title": "Inteligencia programática",
-    "subtitle": "Para desarrolladores, analistas y equipos que construyen sobre datos de World Monitor. Separado de Pro — usa ambos o uno solo.",
+    "subtitle": "Para desarrolladores, analistas y equipos que construyen sobre datos de Mineral Monitor. Separado de Pro — usa ambos o uno solo.",
     "restApi": "API REST en los 30+ dominios de servicio",
     "authenticated": "Autenticado por clave, con límite de tasa por nivel",
     "structured": "JSON estructurado con cabeceras de caché y documentación OpenAPI 3.1",
@@ -216,7 +216,7 @@
     "security": "Seguridad de grado gubernamental",
     "securityDesc": "Despliegue air-gapped, Docker on-premises, tenant cloud dedicado, ruta SOC 2 Type II, SSO/MFA y trazabilidad completa.",
     "aiAgents": "Agentes IA y MCP",
-    "aiAgentsDesc": "Agentes de inteligencia autónomos con personas de inversor. Conecta World Monitor como herramienta a Claude, GPT o LLMs personalizados vía MCP.",
+    "aiAgentsDesc": "Agentes de inteligencia autónomos con personas de inversor. Conecta Mineral Monitor como herramienta a Claude, GPT o LLMs personalizados vía MCP.",
     "dataLayers": "Capas de datos expandidas",
     "dataLayersDesc": "Decenas de miles de activos de infraestructura mapeados globalmente. Integración de imágenes satelitales con detección de cambios y SAR.",
     "connectors": "100+ conectores de datos",
@@ -296,7 +296,7 @@
   },
   "faq": {
     "title": "Preguntas frecuentes",
-    "q1": "¿Sigue siendo gratis World Monitor?",
+    "q1": "¿Sigue siendo gratis Mineral Monitor?",
     "a1": "Sí. La plataforma principal sigue siendo gratuita. Pro añade investigación bursátil, analítica macro y resúmenes IA. Enterprise añade despliegues de equipo y apps de TV.",
     "q2": "¿Por qué pagar por Pro?",
     "a2": "Pro es para inversores, analistas y profesionales que quieren seguimiento de acciones, análisis geopolítico, analítica económica y resúmenes diarios con IA — todo bajo una clave.",
@@ -305,7 +305,7 @@
     "q4": "¿Puedo empezar con Pro y subir después?",
     "a4": "Sí. Pro funciona para individuos serios. Enterprise está cuando crecen las necesidades de equipo y despliegue.",
     "q5": "¿Esto solo sirve para monitorear conflictos?",
-    "a5": "No. World Monitor es principalmente una plataforma de inteligencia global que cubre mercados bursátiles, macroeconomía, análisis geopolítico, energía, infraestructura y más. El seguimiento de conflictos es una capacidad entre muchas — no el foco.",
+    "a5": "No. Mineral Monitor es principalmente una plataforma de inteligencia global que cubre mercados bursátiles, macroeconomía, análisis geopolítico, energía, infraestructura y más. El seguimiento de conflictos es una capacidad entre muchas — no el foco.",
     "q6": "¿Por qué mantener gratuita la plataforma principal?",
     "a6": "Porque el acceso público importa. Los planes de pago financian flujos más profundos para usuarios serios y organizaciones.",
     "q7": "¿Puedo seguir usando mis propias claves API?",
@@ -325,7 +325,7 @@
   },
   "finalCta": {
     "title": "Empieza con Pro. Escala a Enterprise.",
-    "subtitle": "Sigue usando World Monitor gratis o mejora a investigación bursátil, analítica macro y resúmenes IA. Si tu organización necesita acceso de equipo, apps de TV o soporte API, habla con nosotros.",
+    "subtitle": "Sigue usando Mineral Monitor gratis o mejora a investigación bursátil, analítica macro y resúmenes IA. Si tu organización necesita acceso de equipo, apps de TV o soporte API, habla con nosotros.",
     "getPro": "Reserva tu acceso anticipado",
     "talkToSales": "Habla con ventas"
   },
@@ -349,8 +349,8 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "Acabo de unirme a la lista de espera de World Monitor Pro — seguimiento de acciones, análisis geopolítico y resúmenes diarios con IA en una plataforma. Únete:",
-    "joinWaitlistShare": "Únete a la lista de espera de World Monitor Pro:",
+    "shareText": "Acabo de unirme a la lista de espera de Mineral Monitor Pro — seguimiento de acciones, análisis geopolítico y resúmenes diarios con IA en una plataforma. Únete:",
+    "joinWaitlistShare": "Únete a la lista de espera de Mineral Monitor Pro:",
     "youreIn": "¡Estás dentro!",
     "invitedBanner": "Te han invitado — únete a la lista de espera"
   },

@@ -24,7 +24,7 @@
     "asFeaturedIn": "掲載媒体"
   },
   "twoPath": {
-    "proTitle": "World Monitor Pro",
+    "proTitle": "Mineral Monitor Pro",
     "proDesc": "あなたの AI アナリスト。パーソナル・インテリジェンス・デスク。その上に構築できるプラットフォーム。30+ のライブサービスに 1 本の鍵。",
     "proF1": "WM Analyst チャット — 30+ のサービスを会話形式で照会",
     "proF2": "AI ダイジェスト — 日次、1日2回、または週次 — Slack、Discord、Telegram、メール、Webhook へ",
@@ -37,7 +37,7 @@
     "proF9": "AI Market Implications と Regional Intelligence(近日公開:軌道監視、プレミアム地図レイヤー、拡張履歴)",
     "proCta": "早期アクセスを予約",
     "choosePlan": "プランを選ぶ",
-    "entTitle": "World Monitor Enterprise",
+    "entTitle": "Mineral Monitor Enterprise",
     "entDesc": "共有モニタリング、API アクセス、デプロイオプション、TV アプリ、直接サポートを必要とするチーム向け。",
     "entF1": "Pro の全機能に加え:",
     "entF2": "ライブエッジの衛星画像と SAR",
@@ -82,7 +82,7 @@
     "windowTitle": "worldmonitor.app — ライブダッシュボード",
     "openFullScreen": "全画面で開く",
     "tryLiveDashboard": "ライブダッシュボードを試す",
-    "iframeTitle": "World Monitor — ライブ・インテリジェンス・ダッシュボード",
+    "iframeTitle": "Mineral Monitor — ライブ・インテリジェンス・ダッシュボード",
     "description": "3D WebGL 地球儀 · 45 以上のインタラクティブな地図レイヤー · 市場、マクロ、地政学、エネルギー、インフラのリアルタイムデータ"
   },
   "socialProof": {
@@ -110,7 +110,7 @@
     "teamsDesc": "個人利用から共有ワークフロー、API アクセス、TV アプリ、マネージドデプロイへ。"
   },
   "dataCoverage": {
-    "title": "World Monitor が追跡するもの",
+    "title": "Mineral Monitor が追跡するもの",
     "subtitle": "30+ のサービスドメインを同時取り込み。市場、マクロ、地政学、エネルギー、インフラ — すべてを正規化し、WebGL 地球儀に描画。",
     "markets": "金融市場と株式",
     "marketsDesc": "グローバル株式分析、商品、暗号資産、ETF フロー、アナリスト目標、FRED マクロデータ",
@@ -197,7 +197,7 @@
   "apiSection": {
     "apiTier": "API ティア",
     "title": "プログラマティックインテリジェンス",
-    "subtitle": "World Monitor のデータ上に構築する開発者、アナリスト、チーム向け。Pro と独立 — 両方でも片方でも。",
+    "subtitle": "Mineral Monitor のデータ上に構築する開発者、アナリスト、チーム向け。Pro と独立 — 両方でも片方でも。",
     "restApi": "30+ のサービスドメインすべてで REST API",
     "authenticated": "キー単位で認証、ティア単位でレート制限",
     "structured": "キャッシュヘッダーと OpenAPI 3.1 ドキュメントを備えた構造化 JSON",
@@ -216,7 +216,7 @@
     "security": "政府水準のセキュリティ",
     "securityDesc": "エアギャップ配備、オンプレミス Docker、専有クラウドテナント、SOC 2 Type II ルート、SSO/MFA、完全な監査証跡。",
     "aiAgents": "AI エージェントと MCP",
-    "aiAgentsDesc": "投資家ペルソナを備えた自律インテリジェンスエージェント。World Monitor をツールとして Claude、GPT、独自 LLM に MCP 経由で接続。",
+    "aiAgentsDesc": "投資家ペルソナを備えた自律インテリジェンスエージェント。Mineral Monitor をツールとして Claude、GPT、独自 LLM に MCP 経由で接続。",
     "dataLayers": "拡張されたデータレイヤー",
     "dataLayersDesc": "グローバルにマッピングされた数万件のインフラ資産。変化検出と SAR を伴う衛星画像の統合。",
     "connectors": "100 以上のデータコネクタ",
@@ -296,7 +296,7 @@
   },
   "faq": {
     "title": "よくある質問",
-    "q1": "World Monitor はまだ無料ですか?",
+    "q1": "Mineral Monitor はまだ無料ですか?",
     "a1": "はい。コアプラットフォームは無料のままです。Pro はエクイティリサーチ、マクロアナリティクス、AI ブリーフを追加します。Enterprise はチームデプロイと TV アプリを追加します。",
     "q2": "なぜ Pro を支払うのですか?",
     "a2": "Pro は、株式モニタリング、地政学分析、経済アナリティクス、AI デイリーブリーフを望む投資家、アナリスト、プロ向け — すべて 1 本の鍵の下に。",
@@ -305,7 +305,7 @@
     "q4": "Pro で始めて後からアップグレードできますか?",
     "a4": "できます。Pro は本気の個人に機能します。チームとデプロイのニーズが成長したとき、Enterprise があります。",
     "q5": "これは紛争モニタリング専用ですか?",
-    "a5": "いいえ。World Monitor は、株式市場、マクロ経済、地政学分析、エネルギー、インフラなどをカバーするグローバルインテリジェンスプラットフォームです。紛争追跡は多くの機能の一つ — 中心ではありません。",
+    "a5": "いいえ。Mineral Monitor は、株式市場、マクロ経済、地政学分析、エネルギー、インフラなどをカバーするグローバルインテリジェンスプラットフォームです。紛争追跡は多くの機能の一つ — 中心ではありません。",
     "q6": "なぜコアプラットフォームを無料に?",
     "a6": "公共アクセスが大切だからです。有料プランは本格的なユーザーと組織のためのより深いワークフローを支えます。",
     "q7": "自分の API キーをまだ使えますか?",
@@ -325,7 +325,7 @@
   },
   "finalCta": {
     "title": "Pro で始める。Enterprise までスケールする。",
-    "subtitle": "World Monitor を無料で使い続けるか、エクイティリサーチ、マクロアナリティクス、AI ブリーフのためにアップグレードしてください。組織がチームアクセス、TV アプリ、API サポートを必要とする場合はご相談ください。",
+    "subtitle": "Mineral Monitor を無料で使い続けるか、エクイティリサーチ、マクロアナリティクス、AI ブリーフのためにアップグレードしてください。組織がチームアクセス、TV アプリ、API サポートを必要とする場合はご相談ください。",
     "getPro": "早期アクセスを予約",
     "talkToSales": "営業に相談する"
   },
@@ -349,8 +349,8 @@
     "linkedin": "LinkedIn",
     "whatsapp": "WhatsApp",
     "telegram": "Telegram",
-    "shareText": "World Monitor Pro のウェイトリストに参加しました — 株式モニタリング、地政学分析、毎日の AI ブリーフを 1 つのプラットフォームに。一緒に:",
-    "joinWaitlistShare": "World Monitor Pro のウェイトリストに参加:",
+    "shareText": "Mineral Monitor Pro のウェイトリストに参加しました — 株式モニタリング、地政学分析、毎日の AI ブリーフを 1 つのプラットフォームに。一緒に:",
+    "joinWaitlistShare": "Mineral Monitor Pro のウェイトリストに参加:",
     "youreIn": "参加完了!",
     "invitedBanner": "招待されました — ウェイトリストに参加"
   },

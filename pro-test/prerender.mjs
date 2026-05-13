@@ -18,7 +18,7 @@ const en = JSON.parse(readFileSync(resolve(__dirname, 'src/locales/en.json'), 'u
 
 const seoContent = `
 <div id="seo-prerender" style="position:absolute;left:-9999px;top:-9999px;overflow:hidden;width:1px;height:1px;">
-  <h1>World Monitor Pro — From ${en.hero.noiseWord} to ${en.hero.signalWord}</h1>
+  <h1>Mineral Monitor Pro — From ${en.hero.noiseWord} to ${en.hero.signalWord}</h1>
   <p>${en.hero.valueProps}</p>
   <p>${en.hero.launchingDate}</p>
 
